@@ -1,8 +1,24 @@
-import Link from 'next/link'
-import { formatDate, getBlogPosts } from 'app/blog/utils'
+import Link from "next/link";
+import { formatDate, getBlogPosts } from "app/blog/utils";
+import { PenIcon } from "lucide-react";
+import { ConstructionIcon } from "lucide-react";
 
 export function BlogPosts() {
-  let allBlogs = getBlogPosts()
+  let allBlogs = getBlogPosts();
+
+  if (allBlogs.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center space-y-4 py-12 text-center">
+        <ConstructionIcon className="text-yellow-500" size={48} />
+        <h2 className="text-2xl text-neutral-800 dark:text-neutral-200">
+          still building this page
+        </h2>
+        <p className="text-neutral-600 dark:text-neutral-400 max-w-md">
+          I'm busy writing some amazing blogs. Check back soon!
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -11,9 +27,9 @@ export function BlogPosts() {
           if (
             new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)
           ) {
-            return -1
+            return -1;
           }
-          return 1
+          return 1;
         })
         .map((post) => (
           <Link
@@ -32,5 +48,5 @@ export function BlogPosts() {
           </Link>
         ))}
     </div>
-  )
+  );
 }

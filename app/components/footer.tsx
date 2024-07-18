@@ -1,4 +1,12 @@
-function ArrowIcon() {
+import {
+  ArrowUpRightFromSquareIcon,
+  Github,
+  Linkedin,
+  MailIcon,
+  Text,
+} from "lucide-react";
+
+export function ArrowIcon() {
   return (
     <svg
       width="12"
@@ -18,7 +26,31 @@ function ArrowIcon() {
 export default function Footer() {
   return (
     <footer className="mb-16">
-      <ul className="font-sm mt-8 flex flex-col space-x-0 space-y-2 text-neutral-600 md:flex-row md:space-x-4 md:space-y-0 dark:text-neutral-300">
+      <ul className="font-sm mt-8 flex flex-col space-x-0 space-y-2 text-neutral-600 md:flex-row md:space-x-6 md:space-y-0 dark:text-neutral-300">
+        <li>
+          <a
+            className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
+            rel="noopener noreferrer"
+            target="_blank"
+            href="mailto:dk.bansal0026@gmail.com"
+          >
+            {/* <MailIcon size={18} /> */}
+
+            <p className="ml-2 h-7">email</p>
+          </a>
+        </li>
+        <li>
+          <a
+            className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
+            rel="noopener noreferrer"
+            target="_blank"
+            href="https://x.com/_dhruvb_"
+          >
+            {/* <MailIcon size={18} /> */}
+
+            <p className="ml-2 h-7">X</p>
+          </a>
+        </li>
         <li>
           <a
             className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
@@ -26,7 +58,7 @@ export default function Footer() {
             target="_blank"
             href="https://www.linkedin.com/in/dhruvb26/"
           >
-            <ArrowIcon />
+            {/* <ArrowUpRightFromSquareIcon size={18} /> */}
 
             <p className="ml-2 h-7">linkedin</p>
           </a>
@@ -38,8 +70,8 @@ export default function Footer() {
             target="_blank"
             href="https://github.com/dhruvb26"
           >
-            <ArrowIcon />
-            <p className="ml-2 h-7">github</p>
+            {/* <Github size={16} /> */}
+            <p className="ml-1 h-7">github</p>
           </a>
         </li>
         <li>
@@ -49,7 +81,7 @@ export default function Footer() {
             target="_blank"
             href="https://drive.google.com/file/d/16Sf70NRVo0ibVGAAj0ryje92E5kn5k_u/view?usp=drive_link"
           >
-            <ArrowIcon />
+            {/* <Text size={16} /> */}
             <p className="ml-2 h-7">resume</p>
           </a>
         </li>

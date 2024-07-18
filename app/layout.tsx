@@ -10,6 +10,7 @@ import { baseUrl } from "./sitemap";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
+  icons: ["file.png"],
   title: {
     default: "Dhruv Bansal",
     template: "%s | Dhruv Bansal's Portfolio",
