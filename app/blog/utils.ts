@@ -50,7 +50,21 @@ function getMDXData(dir) {
 }
 
 export function getBlogPosts() {
-  return getMDXData(path.join(process.cwd(), "app", "blog", "posts"));
+  const postsDirectory = path.join(process.cwd(), "app", "blog", "posts");
+
+  try {
+    const fileNames = fs.readdirSync(postsDirectory);
+
+    if (fileNames.length === 0) {
+      console.log("No blog posts found. The posts directory is empty.");
+      return [];
+    }
+
+    return getMDXData(path.join(process.cwd(), "app", "blog", "posts"));
+  } catch (error) {
+    console.error("Error reading blog posts:", error);
+    return [];
+  }
 }
 
 export function formatDate(date: string, includeRelative = false) {
