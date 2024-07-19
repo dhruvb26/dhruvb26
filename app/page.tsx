@@ -10,12 +10,7 @@ export default function Page() {
           <h1 className="text-2xl font-semibold text-left tracking-tighter mr-4">
             Dhruv Bansal
           </h1>
-          <p className="text-sm text-gray-500">
-            {new Date().toLocaleString("en-US", {
-              dateStyle: "medium",
-              timeStyle: "medium",
-            })}{" "}
-          </p>
+          <p className="text-sm text-gray-500">📍 Delhi, India | Phoenix, AZ</p>
         </div>
         <Image
           src="/me.png"
@@ -26,11 +21,11 @@ export default function Page() {
         />
       </div>
       <p className="mb-4">
-        {`Passionate full stack developer dedicated to crafting innovative products that address real challenges and enhance user experiences. Constantly expanding my skill set & reading about AI and Neural Networks. I thrive on collaborative projects and believe in the power of technology to drive positive change.`}
+        {`Visionary full stack developer devoted to engineering cutting-edge products that solve real-world challenges and elevate user experiences. Continuously expanding my technical repertoire, with a focus on AI and Neural Networks. I thrive in collaborative environments and firmly believe in technology's power to drive positive societal change.`}
       </p>
       <p className="mb-4">
-        Currently, I'm delving into the fascinating world of LLM agents and
-        exploring their network effects at{" "}
+        Currently immersed in the fascinating world of LLM agents, exploring
+        their network effects at{" "}
         <a
           href="https://ethicalspectacle.com/"
           className="hover:text-rose-300"
@@ -38,8 +33,8 @@ export default function Page() {
         >
           Ethical Spectacle.
         </a>{" "}
-        Simultaneously, I'm honing my data analysis skills and gaining
-        invaluable insights as an intern at{" "}
+        Simultaneously honing data analysis skills and gaining invaluable
+        insights as an intern at{" "}
         <a
           href="https://privateblok.ai/home"
           className="hover:bg-gradient-to-r bg-white from-blue-700 to-emerald-500 bg-clip-text inline-block text-transparent "
