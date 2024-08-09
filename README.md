@@ -1,1 +1,1 @@
-![](https://github-readme-streak-stats.herokuapp.com/?user=dhruvb26&theme=default&hide_border=false)<br/>
+![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=merko)<br/>
