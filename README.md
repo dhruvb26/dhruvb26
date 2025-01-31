@@ -1,1 +1,1 @@
-![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=light)
+![](https://github-status.dk-bansal0026.workers.dev/api)
