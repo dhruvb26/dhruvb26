@@ -31,7 +31,7 @@ export default function SignInPage() {
 					navigate: ({ session, decorateUrl }) => {
 						if (session?.currentTask) return;
 
-						const url = decorateUrl("/");
+						const url = decorateUrl("/lab");
 						if (url.startsWith("http")) {
 							window.location.href = url;
 						} else {
