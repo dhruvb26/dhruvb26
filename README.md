@@ -1,0 +1,1 @@
+it is better when the end is knowledge.
