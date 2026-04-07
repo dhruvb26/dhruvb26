@@ -1,0 +1,99 @@
+{
+	"$schema": "https://biomejs.dev/schemas/2.4.10/schema.json",
+	"vcs": {
+		"enabled": true,
+		"clientKind": "git",
+		"useIgnoreFile": true,
+		"defaultBranch": "main"
+	},
+	"files": {
+		"ignoreUnknown": true,
+		"includes": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "**/*.json", "**/*.css"]
+	},
+	"formatter": {
+		"enabled": true,
+		"indentStyle": "tab",
+		"indentWidth": 2,
+		"lineWidth": 100,
+		"lineEnding": "lf"
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true,
+			"complexity": {
+				"noExcessiveCognitiveComplexity": "warn",
+				"noForEach": "warn",
+				"noVoid": "error",
+				"useSimplifiedLogicExpression": "warn"
+			},
+			"correctness": {
+				"noUnusedImports": "error",
+				"noUnusedVariables": "warn",
+				"useExhaustiveDependencies": "warn",
+				"useHookAtTopLevel": "error"
+			},
+			"performance": {
+				"noAccumulatingSpread": "warn",
+				"noBarrelFile": "warn"
+			},
+			"style": {
+				"noNegationElse": "warn",
+				"noParameterAssign": "warn",
+				"useCollapsedElseIf": "warn",
+				"useConst": "error",
+				"useConsistentArrayType": {
+					"level": "warn",
+					"options": { "syntax": "shorthand" }
+				},
+				"useDefaultParameterLast": "warn",
+				"useExplicitLengthCheck": "warn",
+				"useExportType": "error",
+				"useFilenamingConvention": {
+					"level": "warn",
+					"options": {
+						"requireAscii": true,
+						"filenameCases": ["kebab-case", "camelCase"]
+					}
+				},
+				"useForOf": "warn",
+				"useFragmentSyntax": "warn",
+				"useImportType": "error",
+				"useNodejsImportProtocol": "warn",
+				"useNumberNamespace": "warn",
+				"useSelfClosingElements": "warn",
+				"useShorthandFunctionType": "warn",
+				"useTemplate": "warn"
+			},
+			"suspicious": {
+				"noConsole": "warn",
+				"noEmptyBlockStatements": "warn",
+				"noExplicitAny": "warn",
+				"useAwait": "warn"
+			}
+		}
+	},
+	"css": {
+		"parser": {
+			"cssModules": true,
+			"tailwindDirectives": true
+		}
+	},
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "double",
+			"trailingCommas": "all",
+			"semicolons": "always",
+			"arrowParentheses": "always",
+			"bracketSpacing": true
+		}
+	},
+	"assist": {
+		"enabled": true,
+		"actions": {
+			"source": {
+				"organizeImports": "on"
+			}
+		}
+	}
+}
