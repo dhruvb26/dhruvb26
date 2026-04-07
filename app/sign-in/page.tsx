@@ -2,6 +2,7 @@
 
 import { useSignIn } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Spinner } from "@/components/ui/spinner";
@@ -14,26 +15,33 @@ export default function SignInPage() {
 		const identifier = formData.get("username") as string;
 		const password = formData.get("password") as string;
 
-		const { error } = await signIn.password({
-			identifier,
-			password,
-		});
-
-		if (error) return;
-
-		if (signIn.status === "complete") {
-			await signIn.finalize({
-				navigate: ({ session, decorateUrl }) => {
-					if (session?.currentTask) return;
-
-					const url = decorateUrl("/");
-					if (url.startsWith("http")) {
-						window.location.href = url;
-					} else {
-						router.push(url);
-					}
-				},
+		try {
+			const { error } = await signIn.password({
+				identifier,
+				password,
 			});
+
+			if (error) {
+				toast.error(error.message ?? "sign in failed");
+				return;
+			}
+
+			if (signIn.status === "complete") {
+				await signIn.finalize({
+					navigate: ({ session, decorateUrl }) => {
+						if (session?.currentTask) return;
+
+						const url = decorateUrl("/");
+						if (url.startsWith("http")) {
+							window.location.href = url;
+						} else {
+							router.push(url);
+						}
+					},
+				});
+			}
+		} catch (err) {
+			toast.error(err instanceof Error ? err.message : "something went wrong");
 		}
 	};
 

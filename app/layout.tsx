@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
+import { Geist_Mono } from "next/font/google";
 import "@/styles/globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
@@ -7,6 +9,18 @@ import { ourFileRouter } from "@/app/api/uploadthing/core";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ModeToggle } from "@/components/ui/mode-toggle";
 import { Toaster } from "@/components/ui/sonner";
+
+const diatypeRounded = localFont({
+	src: "../public/fonts/diatype-rounded.woff2",
+	variable: "--font-diatype-rounded",
+	weight: "100 900",
+	display: "swap",
+});
+
+const geistMono = Geist_Mono({
+	subsets: ["latin"],
+	variable: "--font-geist-mono",
+});
 
 export const metadata: Metadata = {
 	title: "Create Next App",
@@ -19,7 +33,11 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en" suppressHydrationWarning className="h-full antialiased font-sans">
+		<html
+			lang="en"
+			suppressHydrationWarning
+			className={`h-full antialiased font-sans ${diatypeRounded.variable} ${geistMono.variable}`}
+		>
 			<body className="min-h-full flex flex-col">
 				<ClerkProvider>
 					<ThemeProvider attribute="class" defaultTheme="light" disableTransitionOnChange>
