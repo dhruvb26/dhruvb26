@@ -41,7 +41,7 @@ function InlineLink({ children, href, ...props }: React.ComponentProps<"a">) {
 	const external = isExternal(href);
 	return (
 		<a
-			className="text-link decoration-transparent underline underline-offset-4 transition-all duration-300 ease-out hover:decoration-current"
+			className="text-link transition-colors duration-300 ease-out hover:text-link/80"
 			href={href}
 			{...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
 			{...props}
@@ -56,7 +56,7 @@ function TagLink({ children, href }: { children?: React.ReactNode; href?: string
 	return (
 		<a href={href} {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
 			<Button
-				className="text-link px-0"
+				className="text-link px-0 transition-colors duration-300 ease-out hover:text-link/80"
 				variant="link"
 				size="lg"
 				hoverIcon={external ? ArrowUpRightIcon : ChevronRight}

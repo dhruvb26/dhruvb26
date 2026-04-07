@@ -18,10 +18,10 @@ This site is a playground. Right now I'm working on training language models to 
 
 **Athena** (CSE 360) iOS app that quizzes you on course material through notifications. Upload docs, it generates questions with Gemini and schedules them throughout the day. [GitHub](https://github.com/dhruvb26/athena)
 
-## Misc
+## Recognition
 
-**HackHarvard '24** First place in the Sustainability track. Built U-Plan, which uses satellite imagery to spot urban heat islands and help planners build smarter. [LinkedIn](https://www.linkedin.com/posts/shreyasbachiraju_hackharvard2024-sustainability-urbanplanning-activity-7251783520820289536-puGI) [Devpost](https://devpost.com/software/u-plan)
+**HackHarvard '24** First place, Sustainability track. Used satellite imagery to detect urban heat islands and surface actionable planning insights. [LinkedIn](https://www.linkedin.com/posts/shreyasbachiraju_hackharvard2024-sustainability-urbanplanning-activity-7251783520820289536-puGI) [Devpost](https://devpost.com/software/u-plan)
 
-**Ethical Spectacle x AZ-VC** Built Five20, a way for restaurants to trade surplus ingredients instead of throwing them out. [LinkedIn](https://www.linkedin.com/posts/shreyasbachiraju_hackathon-sustainability-activity-7183303060226539520-X3sB)
+**DAAD RISE** One of 18 selected from ASU (2,512 applicants) for a [research grant](https://www.daad.de/rise/en/) from the German Academic Exchange Service. [LinkedIn](https://www.linkedin.com/posts/school-of-computing-and-augmented-intelligence_scai-activity-7318719648588341249-rmkY)
 
-**DAAD RISE** Selected for the [DAAD RISE](https://www.daad.de/rise/en/) program, a research grant from the German government. 18 spots from ASU out of 2,512 applicants. [LinkedIn](https://www.linkedin.com/posts/school-of-computing-and-augmented-intelligence_scai-activity-7318719648588341249-rmkY)
+**Ethical Spectacle x AZ-VC** Built Five20, a marketplace for restaurants to trade surplus ingredients instead of wasting them. [LinkedIn](https://www.linkedin.com/posts/shreyasbachiraju_hackathon-sustainability-activity-7183303060226539520-X3sB)
