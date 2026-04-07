@@ -1,5 +1,7 @@
 "use client";
 
+export const dynamic = "force-dynamic";
+
 import { Show, useClerk } from "@clerk/nextjs";
 import { ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
