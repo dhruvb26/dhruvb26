@@ -16,7 +16,9 @@
 @theme inline {
 	--color-background: var(--background);
 	--color-foreground: var(--foreground);
-	--font-sans: "ABC Diatype Rounded", -apple-system, "SF Pro", "SF Pro Text", "Helvetica Neue", system-ui, sans-serif;
+	--font-sans:
+		"ABC Diatype Rounded", -apple-system, "SF Pro", "SF Pro Text", "Helvetica Neue", system-ui,
+		sans-serif;
 	--font-mono: "Geist Mono", ui-monospace, monospace;
 	--font-heading: "ABC Diatype Rounded", -apple-system, "SF Pro", system-ui, sans-serif;
 	--color-sidebar-ring: var(--sidebar-ring);

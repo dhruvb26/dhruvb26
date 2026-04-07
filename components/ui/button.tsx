@@ -1,7 +1,7 @@
-import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import { Slot } from "radix-ui";
 import type { LucideIcon } from "lucide-react";
+import { Slot } from "radix-ui";
+import type * as React from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -66,17 +66,17 @@ function Button({
 			className={cn(buttonVariants({ variant, size, className }))}
 			{...props}
 		>
-		{HoverIcon && hoverIconPosition === "start" && (
-			<span className="inline-flex items-center justify-center overflow-hidden transition-all duration-300 ease-out max-w-0 opacity-0 translate-x-2 group-hover/button:max-w-4 group-hover/button:opacity-100 group-hover/button:translate-x-0 order-first">
-				<HoverIcon />
-			</span>
-		)}
-		{props.children}
-		{HoverIcon && hoverIconPosition === "end" && (
-			<span className="inline-flex items-center justify-center overflow-hidden transition-all duration-300 ease-out max-w-0 opacity-0 -translate-x-2 group-hover/button:max-w-4 group-hover/button:opacity-100 group-hover/button:translate-x-0 order-last">
-				<HoverIcon />
-			</span>
-		)}
+			{HoverIcon && hoverIconPosition === "start" && (
+				<span className="inline-flex items-center justify-center overflow-hidden transition-all duration-300 ease-out max-w-0 opacity-0 translate-x-2 group-hover/button:max-w-4 group-hover/button:opacity-100 group-hover/button:translate-x-0 order-first">
+					<HoverIcon />
+				</span>
+			)}
+			{props.children}
+			{HoverIcon && hoverIconPosition === "end" && (
+				<span className="inline-flex items-center justify-center overflow-hidden transition-all duration-300 ease-out max-w-0 opacity-0 -translate-x-2 group-hover/button:max-w-4 group-hover/button:opacity-100 group-hover/button:translate-x-0 order-last">
+					<HoverIcon strokeWidth={2.75} />
+				</span>
+			)}
 		</Comp>
 	);
 }
