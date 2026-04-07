@@ -58,11 +58,11 @@ export function PdfSplitView({ children }: { children: ReactNode }) {
 	return (
 		// biome-ignore lint/a11y/noStaticElementInteractions: event delegation for anchor click interception
 		// biome-ignore lint/a11y/useKeyWithClickEvents: event delegation for anchor click interception
-		<div className="fixed inset-0 flex" onClick={handleClick}>
-			<div className="w-1/2 h-full overflow-y-auto [&_main]:mx-auto [&_main]:md:ml-auto! [&_main]:md:mr-auto! [&_main]:pt-24!">
+		<div className="fixed inset-0 flex bg-background" onClick={handleClick}>
+			<div className="hidden lg:block w-1/2 h-full overflow-y-auto [&_main]:mx-auto [&_main]:pt-24!">
 				{children}
 			</div>
-			<div className="w-1/2 h-full border-l border-border relative flex flex-col">
+			<div className="w-full lg:w-1/2 h-full lg:border-l border-border relative flex flex-col bg-background">
 				<div className="absolute top-3 left-3 z-10">
 					<CloseButton
 						onClick={(e) => {

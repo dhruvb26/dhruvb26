@@ -159,3 +159,13 @@
 		@apply text-sm text-destructive;
 	}
 }
+
+::-webkit-scrollbar {
+	width: 6px;
+	background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: var(--muted-foreground);
+	border-radius: 999px;
+}

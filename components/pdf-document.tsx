@@ -48,13 +48,12 @@ export default function PdfDocument({ url }: { url: string }) {
 			>
 				{width > 0 &&
 					Array.from({ length: numPages }, (_, i) => i + 1).map((pageNum) => (
-						<Page
+						<div
 							key={`${url}-page-${pageNum}`}
-							pageNumber={pageNum}
-							width={width}
-							renderAnnotationLayer={false}
-							className="border-b border-border last:border-b-0"
-						/>
+							className="border-b border-border last:border-b-0 dark:invert dark:hue-rotate-180"
+						>
+							<Page pageNumber={pageNum} width={width} renderAnnotationLayer={false} />
+						</div>
 					))}
 			</Document>
 		</div>

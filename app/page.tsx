@@ -12,7 +12,7 @@ export default async function Home() {
 	return (
 		<PdfSplitView>
 			<div className="flex flex-col flex-1 bg-background">
-				<main className="flex flex-1 w-full max-w-3xl mx-auto md:ml-[15%] md:mr-auto flex-col items-start py-40 px-6 sm:px-10 md:px-16 bg-background">
+				<main className="flex flex-1 w-full max-w-3xl mx-auto flex-col items-start py-40 px-6 sm:px-10 md:px-16 bg-background">
 					<div className="flex items-center justify-between w-full mb-4">
 						<h1 className="text-2xl font-medium">Dhruv Bansal</h1>
 						<span className="flex items-center gap-2">

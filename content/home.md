@@ -10,13 +10,13 @@ This site is a playground. Right now I'm working on training language models to 
 
 **Bluecast** SaaS tool for growing on LinkedIn. Got to $40k+ in revenue but walked away when the market got crowded. [Website](https://www.bluecast.ai/)
 
-**Smart Negotiation Bots** (CSE 485, Capstone) Training language models to negotiate through self-play RL and GRPO. Fine-tuning with LoRA first, then self-play on GPU clusters. [GitHub](https://github.com/dhruvb26/CSE485-Capstone)
+**Smart Negotiation Bots** Training language models to negotiate through self-play RL and GRPO. Fine-tuning with LoRA first, then self-play on GPU clusters. [GitHub](https://github.com/dhruvb26/CSE485-Capstone)
 
-**Causal Feature Selection** (CSE 472) Figuring out which features actually cause the outcome, not just correlate. Combined TabPFN embeddings with neural Markov blanket predictors. 7.6% better than baseline. [GitHub](https://github.com/dhruvb26/CSE472-blanket-challenge) [Report](https://t7nw0vdho0.ufs.sh/f/wvRR96mLyWoQIbU1jHV0sROT24EzxD9Y7vbcjKr5J6eulXgU)
+**Causal Feature Selection** Figuring out which features actually cause the outcome, not just correlate. Combined TabPFN embeddings with neural Markov blanket predictors. 7.6% better than baseline. [GitHub](https://github.com/dhruvb26/CSE472-blanket-challenge) [Report](https://t7nw0vdho0.ufs.sh/f/wvRR96mLyWoQIbU1jHV0sROT24EzxD9Y7vbcjKr5J6eulXgU)
 
-**Multi-Agent Code Generation** (CSE 475) Two RL agents that collaborate to write better code than one. 51% relative improvement in Pass@1 on HumanEval. [GitHub](https://github.com/dhruvb26/CSE475-Project) [Report](https://t7nw0vdho0.ufs.sh/f/wvRR96mLyWoQ1Qdnqm4fJUS9uxrbIaAHkNBpVKMGj7tgZh5C)
+**Multi-Agent Code Generation** Two RL agents that collaborate to write better code than one. 51% relative improvement in Pass@1 on HumanEval. [GitHub](https://github.com/dhruvb26/CSE475-Project) [Report](https://t7nw0vdho0.ufs.sh/f/wvRR96mLyWoQ1Qdnqm4fJUS9uxrbIaAHkNBpVKMGj7tgZh5C)
 
-**Athena** (CSE 360) iOS app that quizzes you on course material through notifications. Upload docs, it generates questions with Gemini and schedules them throughout the day. [GitHub](https://github.com/dhruvb26/athena)
+**Athena** iOS app that quizzes you on course material through notifications. Upload docs, it generates questions with Gemini and schedules them throughout the day. [GitHub](https://github.com/dhruvb26/athena)
 
 ## Recognition
 
