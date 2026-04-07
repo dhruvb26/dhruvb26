@@ -5,9 +5,10 @@ import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "@/app/api/uploadthing/core";
 import { ClerkProvider } from "@clerk/nextjs";
+import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
 
-const inter = Inter({subsets:['latin'],variable:'--font-sans'});
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -30,13 +31,26 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en" className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", inter.variable)}>
-			<body className="min-h-full flex flex-col"><ClerkProvider>
-				<NextSSRPlugin
-					routerConfig={extractRouterConfig(ourFileRouter)}
-				/>
-				{children}
-			</ClerkProvider></body>
+		<html
+			lang="en"
+			suppressHydrationWarning
+			className={cn(
+				"h-full",
+				"antialiased",
+				geistSans.variable,
+				geistMono.variable,
+				"font-sans",
+				inter.variable,
+			)}
+		>
+			<body className="min-h-full flex flex-col">
+				<ClerkProvider>
+					<ThemeProvider attribute="class" defaultTheme="light" disableTransitionOnChange>
+						<NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
+						{children}
+					</ThemeProvider>
+				</ClerkProvider>
+			</body>
 		</html>
 	);
 }
