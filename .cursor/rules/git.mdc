@@ -1,0 +1,6 @@
+---
+description: Use git-commit skill for all git operations
+alwaysApply: true
+---
+
+When the user asks to commit, push, or perform any git operation, read and follow the skill at `/Users/dhruv/.agents/skills/git-commit/SKILL.md`.
