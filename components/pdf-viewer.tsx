@@ -37,11 +37,11 @@ export function PdfSplitView({ children }: { children: ReactNode }) {
 		const anchor = target.closest("a");
 		if (!anchor) return;
 
-		const text = anchor.textContent?.trim();
-		if (text === "Report") {
+		const href = anchor.href;
+		if (href && (href.endsWith(".pdf") || href.includes("t7nw0vdho0.ufs.sh/f/"))) {
 			e.preventDefault();
 			e.stopPropagation();
-			setPdfUrl(anchor.href);
+			setPdfUrl(href);
 		}
 	}, []);
 
