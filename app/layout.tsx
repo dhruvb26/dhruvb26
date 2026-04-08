@@ -22,6 +22,8 @@ const geistMono = Geist_Mono({
 	variable: "--font-geist-mono",
 });
 
+const uploadthingRouterConfig = extractRouterConfig(ourFileRouter);
+
 export const metadata: Metadata = {
 	title: "Dhruv Bansal",
 	description: "my personal website",
@@ -41,7 +43,7 @@ export default function RootLayout({
 			<body className="min-h-full flex flex-col">
 				<ClerkProvider>
 					<ThemeProvider attribute="class" defaultTheme="light" disableTransitionOnChange>
-						<NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
+						<NextSSRPlugin routerConfig={uploadthingRouterConfig} />
 						{children}
 						<ModeToggle />
 						<Toaster />

@@ -1,3 +1,4 @@
+import { revalidateTag } from "next/cache";
 import { UTApi } from "uploadthing/server";
 
 const utapi = new UTApi();
@@ -9,5 +10,6 @@ export async function POST(req: Request) {
 	}
 
 	await utapi.deleteFiles(key);
+	revalidateTag("board-images", "minutes");
 	return Response.json({ success: true });
 }

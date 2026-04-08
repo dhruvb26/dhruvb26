@@ -1,11 +1,15 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { ArrowDownToLineIcon, ArrowUpRightIcon } from "lucide-react";
+import { cacheLife } from "next/cache";
 import { Markdown } from "@/components/markdown";
 import { PdfSplitView } from "@/components/pdf-viewer";
 import { Button } from "@/components/ui/button";
 
 export default async function Home() {
+	"use cache";
+	cacheLife("max");
+
 	const raw = await fs.readFile(path.join(process.cwd(), "content/home.md"), "utf-8");
 	const md = raw.replace(/^#\s+.*\n+/, "");
 

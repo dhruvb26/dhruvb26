@@ -1,7 +1,5 @@
 "use client";
 
-export const dynamic = "force-dynamic";
-
 import { Show, useClerk } from "@clerk/nextjs";
 import { ChevronRight, GalleryThumbnails } from "lucide-react";
 import Link from "next/link";

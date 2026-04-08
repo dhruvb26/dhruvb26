@@ -132,7 +132,7 @@ export default function BoardPage() {
 
 				<main className="flex flex-1 w-full max-w-4xl mx-auto md:ml-[10%] md:mr-auto flex-col gap-8 py-16 px-6 sm:px-10 md:px-16 bg-background">
 					{loading ? (
-						<div className="flex flex-1 items-center justify-center">
+						<div className="fixed inset-0 flex items-center justify-center">
 							<Spinner className="text-muted-foreground/50" />
 						</div>
 					) : (

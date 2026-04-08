@@ -1,3 +1,4 @@
+import { revalidateTag } from "next/cache";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { UploadThingError } from "uploadthing/server";
 
@@ -35,6 +36,7 @@ export const ourFileRouter = {
 			return { userId: user.id };
 		})
 		.onUploadComplete(({ file }) => {
+			revalidateTag("board-images", "minutes");
 			return { url: file.ufsUrl, name: file.name };
 		}),
 } satisfies FileRouter;
