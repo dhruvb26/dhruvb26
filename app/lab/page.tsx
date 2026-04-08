@@ -3,11 +3,12 @@
 import { Show, useClerk } from "@clerk/nextjs";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 
 export default function LabPage() {
 	const { signOut } = useClerk();
-
+	const router = useRouter();
 	return (
 		<Show when="signed-in" fallback={null}>
 			<div className="flex flex-col flex-1 bg-background">
@@ -22,12 +23,15 @@ export default function LabPage() {
 							</Link>
 						</div>
 					</div>
-					<div className="flex flex-col items-start -space-y-1">
-						<Link href="/">
-							<Button size="lg" variant="link" hoverIcon={ChevronRight}>
-								Home
-							</Button>
-						</Link>
+					<div className="flex flex-col items-start gap-2">
+						<Button
+							size="lg"
+							variant="link"
+							hoverIcon={ChevronRight}
+							onClick={() => router.push("/")}
+						>
+							Home
+						</Button>
 						<Button size="lg" variant="link" hoverIcon={ChevronRight} onClick={() => signOut()}>
 							Sign Out
 						</Button>

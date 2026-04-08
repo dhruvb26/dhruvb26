@@ -24,11 +24,14 @@ export async function getBoardImages() {
 
 	const appId = getAppId();
 	const { files } = await utapi.listFiles();
-	const imageFiles = files.filter((f) => isImage(f.name));
+	const imageFiles = files
+		.filter((f) => isImage(f.name))
+		.sort((a, b) => a.uploadedAt - b.uploadedAt);
 
 	return imageFiles.map((f) => ({
 		key: f.key,
 		name: f.name,
 		url: `https://${appId}.ufs.sh/f/${f.key}`,
+		uploadedAt: f.uploadedAt,
 	}));
 }

@@ -12,17 +12,18 @@ interface BoardImage {
 	url: string;
 	name: string;
 	key: string;
+	uploadedAt: number;
 }
 
 function Gallery({ images, onRemove }: { images: BoardImage[]; onRemove: (key: string) => void }) {
 	if (images.length === 0) return null;
 
 	return (
-		<div className="columns-2 sm:columns-3 gap-3 space-y-3">
+		<div className="flex flex-wrap items-end gap-3">
 			{images.map((img) => (
-				<div key={img.key} className="group relative break-inside-avoid overflow-hidden">
+				<div key={img.key} className="group relative overflow-hidden">
 					{/* biome-ignore lint/performance/noImgElement: next/image forces fixed dimensions, need intrinsic sizing */}
-					<img src={img.url} alt={img.name} className="w-full h-auto" />
+					<img src={img.url} alt={img.name} className="max-h-72 max-w-sm" />
 					<button
 						type="button"
 						onClick={() => onRemove(img.key)}
@@ -47,9 +48,10 @@ export default function BoardPage() {
 
 	const fetchImages = useCallback(async () => {
 		try {
-			const res = await fetch("/api/uploadthing/list");
+			const res = await fetch(`/api/uploadthing/list?t=${Date.now()}`);
 			if (res.ok) {
 				const data: BoardImage[] = await res.json();
+				data.sort((a, b) => a.uploadedAt - b.uploadedAt);
 				setImages(data);
 			}
 		} catch {
