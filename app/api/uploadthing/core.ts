@@ -22,6 +22,21 @@ export const ourFileRouter = {
 		.onUploadComplete(({ metadata }) => {
 			return { uploadedBy: metadata.userId };
 		}),
+
+	boardImages: f({
+		image: {
+			maxFileSize: "16MB",
+			maxFileCount: 10,
+		},
+	})
+		.middleware(async ({ req }) => {
+			const user = await auth(req);
+			if (!user) throw new UploadThingError("Unauthorized");
+			return { userId: user.id };
+		})
+		.onUploadComplete(({ file }) => {
+			return { url: file.ufsUrl, name: file.name };
+		}),
 } satisfies FileRouter;
 
 export type OurFileRouter = typeof ourFileRouter;

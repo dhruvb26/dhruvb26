@@ -20,7 +20,7 @@ export function ModeToggle() {
 		<button
 			type="button"
 			onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-			className="fixed bottom-6 right-6 z-50 text-base text-muted-foreground/60 hover:text-muted-foreground transition-colors duration-200 cursor-pointer"
+			className="fixed bottom-6 right-6 z-50 text-base text-muted-foreground/60 hover:text-muted-foreground transition-colors duration-200 "
 		>
 			{theme === "dark" ? "light" : "dark"}
 		</button>
