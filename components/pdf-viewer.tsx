@@ -31,19 +31,24 @@ function CloseButton({ onClick }: { onClick: (e: React.MouseEvent) => void }) {
 
 export function PdfSplitView({ children }: { children: ReactNode }) {
 	const [pdfUrl, setPdfUrl] = useState<string | null>(null);
+	const [displayUrl, setDisplayUrl] = useState<string | null>(null);
 
-	const handleClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-		const target = e.target as HTMLElement;
-		const anchor = target.closest("a");
-		if (!anchor) return;
+	const handleClick = useCallback(
+		(e: React.MouseEvent<HTMLDivElement>) => {
+			const target = e.target as HTMLElement;
+			const anchor = target.closest("a");
+			if (!anchor) return;
 
-		const href = anchor.href;
-		if (href && (href.endsWith(".pdf") || href.includes("t7nw0vdho0.ufs.sh/f/"))) {
-			e.preventDefault();
-			e.stopPropagation();
-			setPdfUrl(href);
-		}
-	}, []);
+			const href = anchor.href;
+			if (href && (href.endsWith(".pdf") || href.includes("t7nw0vdho0.ufs.sh/f/"))) {
+				e.preventDefault();
+				e.stopPropagation();
+				setPdfUrl(href);
+				if (!displayUrl) setDisplayUrl(href);
+			}
+		},
+		[displayUrl],
+	);
 
 	if (!pdfUrl) {
 		return (
@@ -54,6 +59,8 @@ export function PdfSplitView({ children }: { children: ReactNode }) {
 			</div>
 		);
 	}
+
+	const isTransitioning = pdfUrl !== displayUrl;
 
 	return (
 		// biome-ignore lint/a11y/noStaticElementInteractions: event delegation for anchor click interception
@@ -68,10 +75,25 @@ export function PdfSplitView({ children }: { children: ReactNode }) {
 						onClick={(e) => {
 							e.stopPropagation();
 							setPdfUrl(null);
+							setDisplayUrl(null);
 						}}
 					/>
 				</div>
-				<PdfDocument url={pdfUrl} />
+				<div className="flex-1 relative min-h-0">
+					{displayUrl && (
+						<div key={displayUrl} className="absolute inset-0 flex flex-col">
+							<PdfDocument url={displayUrl} />
+						</div>
+					)}
+					{isTransitioning && (
+						<div
+							key={pdfUrl}
+							className="absolute inset-0 flex flex-col opacity-0 pointer-events-none"
+						>
+							<PdfDocument url={pdfUrl} onDocumentLoad={() => setDisplayUrl(pdfUrl)} />
+						</div>
+					)}
+				</div>
 			</div>
 		</div>
 	);

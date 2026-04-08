@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import "@/styles/globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
@@ -17,9 +16,11 @@ const diatypeRounded = localFont({
 	display: "swap",
 });
 
-const geistMono = Geist_Mono({
-	subsets: ["latin"],
-	variable: "--font-geist-mono",
+const departureMono = localFont({
+	src: "../public/fonts/departure-mono.woff2",
+	variable: "--font-departure-mono",
+	weight: "400",
+	display: "swap",
 });
 
 const uploadthingRouterConfig = extractRouterConfig(ourFileRouter);
@@ -38,7 +39,7 @@ export default function RootLayout({
 		<html
 			lang="en"
 			suppressHydrationWarning
-			className={`h-full antialiased font-sans ${diatypeRounded.variable} ${geistMono.variable}`}
+			className={`h-full antialiased font-sans ${diatypeRounded.variable} ${departureMono.variable}`}
 		>
 			<body className="min-h-full flex flex-col">
 				<ClerkProvider>
