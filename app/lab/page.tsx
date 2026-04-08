@@ -23,9 +23,16 @@ export default function LabPage() {
 							</Link>
 						</div>
 					</div>
-					<Button size="lg" variant="link" hoverIcon={ChevronRight} onClick={() => signOut()}>
-						Sign Out
-					</Button>
+					<div className="flex flex-col items-start">
+						<Link href="/">
+							<Button size="lg" variant="link" hoverIcon={ChevronRight}>
+								Home
+							</Button>
+						</Link>
+						<Button size="lg" variant="link" hoverIcon={ChevronRight} onClick={() => signOut()}>
+							Sign Out
+						</Button>
+					</div>
 				</main>
 			</div>
 		</Show>
