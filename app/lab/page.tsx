@@ -1,8 +1,11 @@
 "use client";
 
 import { Show, useClerk } from "@clerk/nextjs";
-import { ChevronRight, GalleryThumbnails } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import Link from "next/link";
+import { SFHouse } from "sf-symbols-lib/monochrome/icons/SFHouse";
+import { SFRectanglePortraitAndArrowRight } from "sf-symbols-lib/monochrome/icons/SFRectanglePortraitAndArrowRight";
+import { SFSquareGrid2x2 } from "sf-symbols-lib/monochrome/icons/SFSquareGrid2x2";
 import { Button } from "@/components/ui/button";
 
 export default function LabPage() {
@@ -17,7 +20,7 @@ export default function LabPage() {
 						<div className="grid grid-cols-3 gap-2">
 							<Link href="/lab/board">
 								<Button size="lg" variant="link" hoverIcon={ChevronRight}>
-									<GalleryThumbnails />
+									<SFSquareGrid2x2 size="sm" />
 									Board
 								</Button>
 							</Link>
@@ -26,10 +29,12 @@ export default function LabPage() {
 					<div className="flex flex-col items-start">
 						<Link href="/">
 							<Button size="lg" variant="link" hoverIcon={ChevronRight}>
+								<SFHouse size="sm" />
 								Home
 							</Button>
 						</Link>
 						<Button size="lg" variant="link" hoverIcon={ChevronRight} onClick={() => signOut()}>
+							<SFRectanglePortraitAndArrowRight size="sm" />
 							Sign Out
 						</Button>
 					</div>
