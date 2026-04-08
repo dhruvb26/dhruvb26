@@ -11,7 +11,6 @@ export default async function Home() {
 	cacheLife("max");
 
 	const raw = await fs.readFile(path.join(process.cwd(), "content/home.md"), "utf-8");
-	const md = raw.replace(/^#\s+.*\n+/, "");
 
 	return (
 		<PdfSplitView>
@@ -53,7 +52,7 @@ export default async function Home() {
 							</a>
 						</span>
 					</div>
-					<Markdown>{md}</Markdown>
+					<Markdown>{raw.replace(/^#\s+.+\n+/, "")}</Markdown>
 				</main>
 			</div>
 		</PdfSplitView>
