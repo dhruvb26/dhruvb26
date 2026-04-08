@@ -63,7 +63,7 @@ export default function BoardPage() {
 	const { startUpload, isUploading } = useUploadThing("boardImages", {
 		onClientUploadComplete: (res) => {
 			const uploaded = res.map((r) => ({
-				url: r.ufsUrl,
+				url: r.ufsUrl ?? r.url,
 				name: r.name,
 				key: r.key,
 			}));
