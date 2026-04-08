@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/Page/AnnotationLayer.css";
-import "react-pdf/dist/Page/TextLayer.css";
 import { Spinner } from "@/components/ui/spinner";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
@@ -14,7 +13,6 @@ export default function PdfDocument({ url }: { url: string }) {
 	const containerRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
-		setNumPages(0);
 		containerRef.current?.scrollTo(0, 0);
 	}, []);
 
@@ -31,7 +29,10 @@ export default function PdfDocument({ url }: { url: string }) {
 	}, []);
 
 	return (
-		<div ref={containerRef} className="flex-1 overflow-y-auto overscroll-contain">
+		<div
+			ref={containerRef}
+			className="flex-1 overflow-y-auto overscroll-contain bg-background pdf-scroll"
+		>
 			<Document
 				file={url}
 				onLoadSuccess={({ numPages: n }) => setNumPages(n)}
@@ -48,11 +49,13 @@ export default function PdfDocument({ url }: { url: string }) {
 			>
 				{width > 0 &&
 					Array.from({ length: numPages }, (_, i) => i + 1).map((pageNum) => (
-						<div
-							key={`${url}-page-${pageNum}`}
-							className="border-b border-border last:border-b-0 dark:invert dark:hue-rotate-180"
-						>
-							<Page pageNumber={pageNum} width={width} renderAnnotationLayer={false} />
+						<div key={`${url}-page-${pageNum}`} className="border-b border-border last:border-b-0">
+							<Page
+								pageNumber={pageNum}
+								width={width}
+								renderAnnotationLayer={false}
+								renderTextLayer={false}
+							/>
 						</div>
 					))}
 			</Document>

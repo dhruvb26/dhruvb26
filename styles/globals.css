@@ -151,13 +151,19 @@
 	}
 }
 
-::-webkit-scrollbar {
-	width: 6px;
-	height: 6px;
-	background-color: transparent;
+::selection {
+	background-color: var(--muted);
 }
 
-::-webkit-scrollbar-thumb {
-	background-color: var(--muted-foreground);
-	border-radius: 999px;
+.dark ::selection {
+	background-color: var(--muted);
+}
+
+* {
+	scrollbar-width: thin;
+	scrollbar-color: var(--muted-foreground) transparent;
+}
+
+.pdf-scroll {
+	scrollbar-color: oklch(0.7 0 0) transparent;
 }
