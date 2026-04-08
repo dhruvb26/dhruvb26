@@ -3,9 +3,9 @@
 import { Show, useClerk } from "@clerk/nextjs";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
-import { SFHouse } from "sf-symbols-lib/monochrome/icons/SFHouse";
-import { SFRectanglePortraitAndArrowRight } from "sf-symbols-lib/monochrome/icons/SFRectanglePortraitAndArrowRight";
-import { SFSquareGrid2x2 } from "sf-symbols-lib/monochrome/icons/SFSquareGrid2x2";
+import { SFHouse } from "sf-symbols-lib/monochrome/SFHouse";
+import { SFRectanglePortraitAndArrowRight } from "sf-symbols-lib/monochrome/SFRectanglePortraitAndArrowRight";
+import { SFSquareGrid2x2 } from "sf-symbols-lib/monochrome/SFSquareGrid2x2";
 import { Button } from "@/components/ui/button";
 
 export default function LabPage() {
