@@ -3,9 +3,6 @@
 import { Show, useClerk } from "@clerk/nextjs";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
-import { SFHouse } from "sf-symbols-lib/monochrome/SFHouse";
-import { SFRectanglePortraitAndArrowRight } from "sf-symbols-lib/monochrome/SFRectanglePortraitAndArrowRight";
-import { SFSquareGrid2x2 } from "sf-symbols-lib/monochrome/SFSquareGrid2x2";
 import { Button } from "@/components/ui/button";
 
 export default function LabPage() {
@@ -19,22 +16,19 @@ export default function LabPage() {
 						<h1 className="text-2xl font-medium">Lab</h1>
 						<div className="grid grid-cols-3 gap-2">
 							<Link href="/lab/board">
-								<Button size="lg" variant="link" hoverIcon={ChevronRight}>
-									<SFSquareGrid2x2 size="sm" />
-									Board
-								</Button>
+								<div className="border border-border p-4 rounded-md hover:bg-muted transition-colors">
+									Mood Board
+								</div>
 							</Link>
 						</div>
 					</div>
-					<div className="flex flex-col items-start">
+					<div className="flex flex-col items-start -space-y-1">
 						<Link href="/">
 							<Button size="lg" variant="link" hoverIcon={ChevronRight}>
-								<SFHouse size="sm" />
 								Home
 							</Button>
 						</Link>
 						<Button size="lg" variant="link" hoverIcon={ChevronRight} onClick={() => signOut()}>
-							<SFRectanglePortraitAndArrowRight size="sm" />
 							Sign Out
 						</Button>
 					</div>
