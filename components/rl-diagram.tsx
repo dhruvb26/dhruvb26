@@ -75,11 +75,9 @@ const dashFlow = {
 const noTransition = { duration: 0 };
 
 const CSS = `
-.rl-d{--a:rgb(19,66,255);--p:rgba(19,66,255,.04);--n:rgba(19,66,255,.72)}
-@supports(color:color(display-p3 0.0731 0.2585 1)){.rl-d{--a:color(display-p3 0.0731 0.2585 1);--p:color(display-p3 0.0731 0.2585 1/.04);--n:color(display-p3 0.0731 0.2585 1/.72)}}
-.rl-d .ln{fill:none;stroke:var(--a);stroke-width:.5}
-.rl-d .lb{font-family:var(--font-mono);font-size:7px;letter-spacing:.5px;text-transform:uppercase;fill:var(--a)}
-.rl-d .mt{font-family:var(--font-mono);font-size:7px;letter-spacing:.5px;text-transform:uppercase;fill:var(--a)}
+.rl-d .ln{fill:none;stroke:var(--foreground);stroke-width:.5}
+.rl-d .lb{font-family:var(--font-mono);font-size:7px;letter-spacing:.5px;text-transform:uppercase;fill:var(--link)}
+.rl-d .mt{font-family:var(--font-mono);font-size:7px;letter-spacing:.5px;text-transform:uppercase;fill:var(--link)}
 `;
 
 function FadeGroup({
@@ -152,8 +150,8 @@ function DiamondPlane({
 		>
 			<path
 				d={diamond(plane.x, plane.y, plane.w, plane.h)}
-				fill={isFilled ? "rgb(19,66,255)" : "rgb(255,255,255)"}
-				stroke="rgb(19,66,255)"
+				fill={isFilled ? "var(--foreground)" : "var(--background)"}
+				stroke="var(--foreground)"
 				strokeWidth="0.5"
 			/>
 			<motion.text
@@ -239,30 +237,12 @@ export function RLDiagram() {
 					))}
 
 					<FadeGroup expanded={expanded} delay={0.18}>
-						<FlowingLine
-							expanded={expanded}
-							x1={CX}
-							y1="158"
-							x2={CX}
-							y2="180"
-							dash={4}
-							gap={6}
-							flowDuration={1.4}
-						/>
+						<line x1={CX} y1="158" x2={CX} y2="180" className="ln" />
 					</FadeGroup>
 
 					<FadeGroup expanded={expanded} delay={0.26}>
-						<FlowingLine
-							expanded={expanded}
-							x1={CX}
-							y1="272"
-							x2={CX}
-							y2="410"
-							dash={5}
-							gap={7}
-							flowDuration={1.5}
-						/>
-						<circle cx={CX} cy="340" r="2.5" fill="rgb(19,66,255)" />
+						<line x1={CX} y1="272" x2={CX} y2="410" className="ln" />
+						<circle cx={CX} cy="340" r="2.5" fill="var(--foreground)" />
 						<text x="212" y="342" className="lb" textLength="132" lengthAdjust="spacingAndGlyphs">
 							interaction [ a_t, r_t, s_t+1 ]
 						</text>
@@ -281,7 +261,7 @@ export function RLDiagram() {
 				transition={{ duration: 0.25, delay: expanded ? 0.4 : 0 }}
 				className="pointer-events-none absolute right-0 bottom-0 max-w-[180px] text-right text-base text-foreground"
 			>
-				<span className="pointer-events-auto text-muted-foreground text-sm">
+				<span className="pointer-events-auto text-muted-foreground text-base">
 					vibe coded taking inspiration from{" "}
 					<a
 						href="https://makingsoftware.com"
