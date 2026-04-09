@@ -57,9 +57,9 @@ export default async function Home() {
 						<Markdown>{raw.replace(/^#\s+.+\n+/, "")}</Markdown>
 					</main>
 				</div>
-				<div className="hidden @5xl:flex w-1/2 shrink-0 items-center justify-center">
+				{/* <div className="hidden @5xl:flex w-1/2 shrink-0 items-center justify-center">
 					<RLDiagram />
-				</div>
+				</div> */}
 			</div>
 		</PdfSplitView>
 	);
