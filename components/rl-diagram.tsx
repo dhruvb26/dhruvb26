@@ -15,10 +15,28 @@ type Plane = {
 	collapseY: number;
 };
 
-function diamond(x: number, y: number, w: number, h: number) {
+function diamond(x: number, y: number, w: number, h: number, r = 8) {
 	const cx = x + w / 2;
 	const cy = y + h / 2;
-	return `M${x},${cy} L${cx},${y} L${x + w},${cy} L${cx},${y + h}Z`;
+	const hw = w / 2;
+	const hh = h / 2;
+	const edgeLen = Math.sqrt(hw * hw + hh * hh);
+	const t = r / edgeLen;
+	const thw = t * hw;
+	const thh = t * hh;
+
+	return [
+		`M${x + thw},${cy - thh}`,
+		`L${cx - thw},${y + thh}`,
+		`Q${cx},${y} ${cx + thw},${y + thh}`,
+		`L${x + w - thw},${cy - thh}`,
+		`Q${x + w},${cy} ${x + w - thw},${cy + thh}`,
+		`L${cx + thw},${y + h - thh}`,
+		`Q${cx},${y + h} ${cx - thw},${y + h - thh}`,
+		`L${x + thw},${cy + thh}`,
+		`Q${x},${cy} ${x + thw},${cy - thh}`,
+		"Z",
+	].join(" ");
 }
 
 const CX = 196;
@@ -34,7 +52,7 @@ const PLANES: Plane[] = [
 		w: 256,
 		h: 92,
 		expandDelay: 0.04,
-		collapseY: STACK_Y - 24 - 112,
+		collapseY: STACK_Y - 3 - 106,
 	},
 	{
 		id: "value",
@@ -54,7 +72,7 @@ const PLANES: Plane[] = [
 		w: 256,
 		h: 92,
 		expandDelay: 0.16,
-		collapseY: STACK_Y + 24 - 456,
+		collapseY: STACK_Y + -3 - 456,
 	},
 ];
 
@@ -75,9 +93,9 @@ const dashFlow = {
 const noTransition = { duration: 0 };
 
 const CSS = `
-.rl-d .ln{fill:none;stroke:var(--foreground);stroke-width:.5}
+.rl-d .ln{fill:none;stroke:var(--link);stroke-width:.75;opacity:.55}
 .rl-d .lb{font-family:var(--font-mono);font-size:7px;letter-spacing:.5px;text-transform:uppercase;fill:var(--link)}
-.rl-d .mt{font-family:var(--font-mono);font-size:7px;letter-spacing:.5px;text-transform:uppercase;fill:var(--link)}
+.rl-d .mt{font-family:var(--font-mono);font-size:7px;letter-spacing:.5px;text-transform:uppercase;fill:var(--link);opacity:.7}
 `;
 
 function FadeGroup({
@@ -139,6 +157,8 @@ function DiamondPlane({
 	expanded: boolean;
 }) {
 	const isFilled = expanded && plane.id === "value";
+	const roundedPath = diamond(plane.x, plane.y, plane.w, plane.h, 8);
+	const sharpPath = diamond(plane.x, plane.y, plane.w, plane.h, 0);
 	return (
 		<motion.g
 			initial={{ y: plane.collapseY }}
@@ -148,11 +168,15 @@ function DiamondPlane({
 				delay: expanded ? plane.expandDelay : (PLANE_COUNT - 1 - index) * 0.03,
 			}}
 		>
-			<path
-				d={diamond(plane.x, plane.y, plane.w, plane.h)}
-				fill={isFilled ? "var(--foreground)" : "var(--background)"}
-				stroke="var(--foreground)"
-				strokeWidth="0.5"
+			<motion.path
+				initial={{ d: roundedPath }}
+				animate={{ d: expanded ? sharpPath : roundedPath }}
+				transition={{ duration: 0.35, ease: "easeInOut" }}
+				fill={isFilled ? "var(--link)" : "var(--background)"}
+				fillOpacity={isFilled ? 0.2 : 1}
+				stroke="var(--link)"
+				strokeWidth="0.75"
+				strokeOpacity={0.7}
 			/>
 			<motion.text
 				x="372"
@@ -164,7 +188,7 @@ function DiamondPlane({
 				animate={{ opacity: expanded ? 1 : 0 }}
 				transition={{
 					duration: 0.25,
-					delay: expanded ? plane.expandDelay + 0.08 : 0,
+					delay: expanded ? 0.4 + index * 0.06 : 0,
 				}}
 			>
 				{plane.label}
@@ -217,7 +241,7 @@ export function RLDiagram() {
 						</text>
 					</motion.g>
 
-					<FadeGroup expanded={expanded} delay={0.12}>
+					<FadeGroup expanded={expanded} delay={0.42}>
 						<text x="80" y="48" className="mt">
 							agent stack
 						</text>
@@ -226,7 +250,7 @@ export function RLDiagram() {
 						</text>
 					</FadeGroup>
 
-					<FadeGroup expanded={expanded} delay={0.16}>
+					<FadeGroup expanded={expanded} delay={0.5}>
 						{GUIDE_LINES.map((l) => (
 							<FlowingLine key={`${l.x1}-${l.y1}-${l.y2}`} expanded={expanded} {...l} />
 						))}
@@ -236,19 +260,19 @@ export function RLDiagram() {
 						<DiamondPlane key={p.id} plane={p} index={i} expanded={expanded} />
 					))}
 
-					<FadeGroup expanded={expanded} delay={0.18}>
+					<FadeGroup expanded={expanded} delay={0.56}>
 						<line x1={CX} y1="158" x2={CX} y2="180" className="ln" />
 					</FadeGroup>
 
-					<FadeGroup expanded={expanded} delay={0.26}>
+					<FadeGroup expanded={expanded} delay={0.64}>
 						<line x1={CX} y1="272" x2={CX} y2="410" className="ln" />
-						<circle cx={CX} cy="340" r="2.5" fill="var(--foreground)" />
-						<text x="212" y="342" className="lb" textLength="132" lengthAdjust="spacingAndGlyphs">
+						<polygon points="208,339 212,342 208,345" fill="var(--link)" opacity="0.8" />
+						<text x="216" y="345" className="lb" textLength="132" lengthAdjust="spacingAndGlyphs">
 							interaction [ a_t, r_t, s_t+1 ]
 						</text>
 					</FadeGroup>
 
-					<FadeGroup expanded={expanded} delay={0.34}>
+					<FadeGroup expanded={expanded} delay={0.74}>
 						<text x={CX} y="568" textAnchor="middle" className="mt">
 							feedback · policy update manifold
 						</text>
@@ -258,7 +282,7 @@ export function RLDiagram() {
 			<motion.div
 				initial={{ opacity: 0 }}
 				animate={{ opacity: expanded ? 1 : 0 }}
-				transition={{ duration: 0.25, delay: expanded ? 0.4 : 0 }}
+				transition={{ duration: 0.25, delay: expanded ? 0.85 : 0 }}
 				className="pointer-events-none absolute right-0 bottom-0 max-w-[180px] text-right text-base text-foreground"
 			>
 				<span className="pointer-events-auto text-muted-foreground text-base">

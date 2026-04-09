@@ -46,7 +46,7 @@ export default function RootLayout({
 					<ThemeProvider attribute="class" defaultTheme="light" disableTransitionOnChange>
 						<NextSSRPlugin routerConfig={uploadthingRouterConfig} />
 						{children}
-						<ModeToggle />
+						{/* <ModeToggle /> */}
 						<Toaster />
 					</ThemeProvider>
 				</ClerkProvider>
