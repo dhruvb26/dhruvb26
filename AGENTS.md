@@ -12,7 +12,7 @@ Wiki content lives in `~/Documents/Vault/wiki` (Obsidian vault) and is **not** c
 
 1. **Lint** — `bun run lint` (biome). Fix any errors before proceeding.
 2. **Commit & push** — stage changes, commit with conventional commits (lowercase), `git push`.
-3. **Build** — `bun run build` (runs `scripts/sync-wiki.ts` to copy vault → `content/wiki/`, then `next build`). All wiki pages are statically generated.
+3. **Build** — `vercel build --prod` (runs `bun run build` internally — syncs wiki, runs `next build` — then packages into `.vercel/output/`).
 4. **Deploy** — `vercel deploy --prebuilt --prod` uploads the local build to Vercel production.
 
 If Vercel project settings aren't cached locally yet, run `vercel pull --yes --environment production` first.
@@ -22,7 +22,7 @@ If Vercel project settings aren't cached locally yet, run `vercel pull --yes --e
 ```sh
 bun run lint
 git add . && git commit -m "feat(scope): description" && git push
-bun run build
+vercel build --prod
 vercel deploy --prebuilt --prod
 ```
 
