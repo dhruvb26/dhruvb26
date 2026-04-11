@@ -10,7 +10,8 @@
 		"check": "biome check .",
 		"fix": "biome check --fix .",
 		"format": "biome format --write .",
-		"lint": "biome lint ."
+		"lint": "biome lint .",
+		"deploy:prod": "vercel build --prod && vercel deploy --prebuilt --prod"
 	},
 	"dependencies": {
 		"@clerk/nextjs": "^7.0.11",
