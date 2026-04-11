@@ -1,4 +1,5 @@
 import { ArrowUpRightIcon, ChevronRight } from "lucide-react";
+import Link from "next/link";
 import React from "react";
 import ReactMarkdown, { type Components } from "react-markdown";
 import remarkBreaks from "remark-breaks";
@@ -128,7 +129,19 @@ return {
 			</div>
 		);
 	},
-	a: ({ children, ...props }) => <InlineLink {...props}>{children}</InlineLink>,
+	a: ({ children, href, ...props }) => {
+		if (variant === "wiki" && href && !isExternal(href)) {
+			return (
+				<Link
+					href={href}
+					className="text-link transition-colors duration-300 ease-out hover:text-link/80"
+				>
+					{children}
+				</Link>
+			);
+		}
+		return <InlineLink href={href} {...props}>{children}</InlineLink>;
+	},
 	ul: ({ children, ...props }) => (
 		<ul className="list-disc pl-6 text-muted-foreground space-y-1" {...props}>
 			{children}

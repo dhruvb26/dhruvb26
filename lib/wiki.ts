@@ -1,4 +1,5 @@
 import fs from "node:fs/promises";
+import { cacheLife, cacheTag } from "next/cache";
 import path from "node:path";
 
 const WIKI_DIR = path.join(process.cwd(), "content", "wiki");
@@ -56,6 +57,10 @@ async function readArticleTitle(slug: string): Promise<string> {
 }
 
 export async function getWikiCategories(): Promise<WikiCategory[]> {
+	"use cache";
+	cacheLife("max");
+	cacheTag("wiki");
+
 	const raw = await fs.readFile(path.join(WIKI_DIR, "INDEX.md"), "utf-8");
 	const categories: WikiCategory[] = [];
 	let current: WikiCategory | null = null;
@@ -89,6 +94,10 @@ export async function getWikiCategories(): Promise<WikiCategory[]> {
 }
 
 export async function getWikiArticleExcerpt(slug: string): Promise<string> {
+	"use cache";
+	cacheLife("max");
+	cacheTag("wiki");
+
 	try {
 		const raw = await fs.readFile(path.join(WIKI_DIR, `${slug}.md`), "utf-8");
 		const { body } = parseFrontmatter(raw);
@@ -105,6 +114,10 @@ export async function getWikiArticleExcerpt(slug: string): Promise<string> {
 export async function getWikiArticle(
 	slug: string,
 ): Promise<{ title: string; body: string } | null> {
+	"use cache";
+	cacheLife("max");
+	cacheTag("wiki");
+
 	const safeName = slug.replace(/[^a-z0-9-]/g, "");
 	try {
 		const raw = await fs.readFile(path.join(WIKI_DIR, `${safeName}.md`), "utf-8");
@@ -121,6 +134,10 @@ export async function getWikiArticle(
 }
 
 export async function getWikiSlugs(): Promise<string[]> {
+	"use cache";
+	cacheLife("max");
+	cacheTag("wiki");
+
 	const files = await fs.readdir(WIKI_DIR);
 	return files
 		.filter((f) => f.endsWith(".md") && f !== "INDEX.md")
