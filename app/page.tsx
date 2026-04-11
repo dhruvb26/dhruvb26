@@ -2,6 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { ArrowDownToLineIcon, ArrowUpRightIcon } from "lucide-react";
 import { cacheLife } from "next/cache";
+import { HomeLabLink } from "@/components/home-lab-link";
 import { Markdown } from "@/components/markdown";
 import { PdfSplitView } from "@/components/pdf-viewer";
 import { RLDiagram } from "@/components/rl-diagram";
@@ -60,6 +61,7 @@ export default async function Home() {
 				{/* <div className="hidden @5xl:flex w-1/2 shrink-0 items-center justify-center">
 					<RLDiagram />
 				</div> */}
+				<HomeLabLink />
 			</div>
 		</PdfSplitView>
 	);

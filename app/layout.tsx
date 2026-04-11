@@ -6,7 +6,6 @@ import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "@/app/api/uploadthing/core";
 import { ThemeProvider } from "@/components/theme-provider";
-import { ModeToggle } from "@/components/ui/mode-toggle";
 import { Toaster } from "@/components/ui/sonner";
 
 const diatypeRounded = localFont({
@@ -46,7 +45,6 @@ export default function RootLayout({
 					<ThemeProvider attribute="class" defaultTheme="light" disableTransitionOnChange>
 						<NextSSRPlugin routerConfig={uploadthingRouterConfig} />
 						{children}
-						{/* <ModeToggle /> */}
 						<Toaster />
 					</ThemeProvider>
 				</ClerkProvider>

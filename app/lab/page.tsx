@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { ModeToggle } from "@/components/ui/mode-toggle";
 
 export default function LabPage() {
 	const { signOut } = useClerk();
@@ -13,6 +14,7 @@ export default function LabPage() {
 	return (
 		<Show when="signed-in" fallback={null}>
 			<div className="flex flex-col flex-1 bg-background">
+				<ModeToggle />
 				<main className="flex flex-1 w-full max-w-3xl mx-auto md:ml-[15%] md:mr-auto flex-col items-start justify-between py-40 px-6 sm:px-10 md:px-16 bg-background">
 					<div className="w-full space-y-8">
 						<div className="flex flex-col items-start gap-2">
