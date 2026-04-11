@@ -5,6 +5,7 @@ import { ArrowLeft, X } from "lucide-react";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
+import { LabControls } from "@/components/lab-controls";
 import { Spinner } from "@/components/ui/spinner";
 import { useUploadThing } from "@/lib/uploadthing";
 
@@ -57,7 +58,7 @@ export default function BoardPage() {
 		const data = rawData.filter((d) => !deletedKeysRef.current.has(d.key));
 		const apiKeys = new Set(data.map((d) => d.key));
 		const notYetInApi = prev.filter(
-			(p) => !apiKeys.has(p.key) && !deletedKeysRef.current.has(p.key),
+			(p) => !(apiKeys.has(p.key) || deletedKeysRef.current.has(p.key)),
 		);
 		return [...data, ...notYetInApi].sort((a, b) => a.uploadedAt - b.uploadedAt);
 	}, []);
@@ -83,8 +84,8 @@ export default function BoardPage() {
 
 	const { startUpload, isUploading } = useUploadThing("boardImages", {
 		onClientUploadComplete: (uploaded) => {
-			if (!uploaded?.length) {
-				void fetchImages();
+			if (uploaded?.length === 0) {
+				fetchImages();
 				return;
 			}
 			setImages((prev) => {
@@ -101,7 +102,7 @@ export default function BoardPage() {
 				}
 				return Array.from(byKey.values()).sort((a, b) => a.uploadedAt - b.uploadedAt);
 			});
-			void fetchImages();
+			fetchImages();
 		},
 		onUploadError: (err) => {
 			toast.error(err.message);
@@ -132,12 +133,12 @@ export default function BoardPage() {
 			if (!res.ok) {
 				deletedKeysRef.current.delete(key);
 				toast.error("Failed to delete image");
-				void fetchImages();
+				fetchImages();
 			}
 		} catch {
 			deletedKeysRef.current.delete(key);
 			toast.error("Failed to delete image");
-			void fetchImages();
+			fetchImages();
 		}
 	};
 
@@ -208,6 +209,7 @@ export default function BoardPage() {
 						e.target.value = "";
 					}}
 				/>
+				<LabControls />
 			</div>
 		</Show>
 	);

@@ -18,6 +18,7 @@ export default function PdfDocument({
 	const [width, setWidth] = useState(0);
 	const containerRef = useRef<HTMLDivElement>(null);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: scroll reset must fire when url changes
 	useEffect(() => {
 		containerRef.current?.scrollTo(0, 0);
 	}, [url]);

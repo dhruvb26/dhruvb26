@@ -5,7 +5,6 @@ import { cacheLife } from "next/cache";
 import { HomeLabLink } from "@/components/home-lab-link";
 import { Markdown } from "@/components/markdown";
 import { PdfSplitView } from "@/components/pdf-viewer";
-import { RLDiagram } from "@/components/rl-diagram";
 import { Button } from "@/components/ui/button";
 
 export default async function Home() {

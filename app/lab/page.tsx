@@ -1,21 +1,15 @@
 "use client";
 
-import { Show, useClerk } from "@clerk/nextjs";
-import { ChevronRight } from "lucide-react";
+import { Show } from "@clerk/nextjs";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
+import { LabControls } from "@/components/lab-controls";
 import { Card } from "@/components/ui/card";
-import { ModeToggle } from "@/components/ui/mode-toggle";
 
 export default function LabPage() {
-	const { signOut } = useClerk();
-	const router = useRouter();
 	return (
 		<Show when="signed-in" fallback={null}>
 			<div className="flex flex-col flex-1 bg-background">
-				<ModeToggle />
-				<main className="flex flex-1 w-full max-w-3xl mx-auto md:ml-[15%] md:mr-auto flex-col items-start justify-between py-40 px-6 sm:px-10 md:px-16 bg-background">
+				<main className="flex flex-1 w-full max-w-3xl mx-auto md:ml-[15%] md:mr-auto flex-col items-start py-40 px-6 sm:px-10 md:px-16 bg-background">
 					<div className="w-full space-y-8">
 						<div className="flex flex-col items-start gap-2">
 							<h1 className="text-2xl font-medium">Lab</h1>
@@ -25,22 +19,13 @@ export default function LabPage() {
 							<Link href="/lab/board">
 								<Card className="p-4 hover:bg-muted transition-colors text-base">Mood Board</Card>
 							</Link>
+							<Link href="/lab/wiki">
+								<Card className="p-4 hover:bg-muted transition-colors text-base">Wiki</Card>
+							</Link>
 						</div>
 					</div>
-					<div className="flex flex-col items-start gap-1">
-						<Button
-							size="lg"
-							variant="link"
-							hoverIcon={ChevronRight}
-							onClick={() => router.push("/")}
-						>
-							Home
-						</Button>
-						<Button size="lg" variant="link" hoverIcon={ChevronRight} onClick={() => signOut()}>
-							Logout
-						</Button>
-					</div>
 				</main>
+				<LabControls />
 			</div>
 		</Show>
 	);

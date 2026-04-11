@@ -1,6 +1,8 @@
 import { ArrowUpRightIcon, ChevronRight } from "lucide-react";
 import React from "react";
 import ReactMarkdown, { type Components } from "react-markdown";
+import remarkBreaks from "remark-breaks";
+import remarkGfm from "remark-gfm";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -162,6 +164,61 @@ const components: Components = {
 			{children}
 		</pre>
 	),
+	img: ({ src, alt, ...props }) => (
+		// biome-ignore lint/performance/noImgElement: external URLs from markdown, can't use next/image
+		<img
+			src={src}
+			alt={alt ?? ""}
+			className="rounded-md max-w-full h-auto my-1"
+			loading="lazy"
+			{...props}
+		/>
+	),
+	table: ({ children, ...props }) => (
+		<div className="overflow-x-auto my-1">
+			<table className="w-full border-collapse text-sm" {...props}>
+				{children}
+			</table>
+		</div>
+	),
+	thead: ({ children, ...props }) => (
+		<thead className="border-b border-border" {...props}>
+			{children}
+		</thead>
+	),
+	tbody: ({ children, ...props }) => (
+		<tbody className="divide-y divide-border" {...props}>
+			{children}
+		</tbody>
+	),
+	tr: ({ children, ...props }) => <tr {...props}>{children}</tr>,
+	th: ({ children, ...props }) => (
+		<th className="px-3 py-2 text-left font-medium text-foreground" {...props}>
+			{children}
+		</th>
+	),
+	td: ({ children, ...props }) => (
+		<td className="px-3 py-2 text-muted-foreground" {...props}>
+			{children}
+		</td>
+	),
+	del: ({ children, ...props }) => (
+		<del className="text-muted-foreground/60 line-through" {...props}>
+			{children}
+		</del>
+	),
+	input: ({ type, checked, ...props }) =>
+		type === "checkbox" ? (
+			<input
+				type="checkbox"
+				checked={checked}
+				readOnly
+				className="mr-1.5 align-middle accent-link"
+				{...props}
+			/>
+		) : (
+			<input type={type} {...props} />
+		),
 	hr: (props) => <hr className="border-border" {...props} />,
 	strong: ({ children, ...props }) => (
 		<strong className="font-medium text-foreground" {...props}>
@@ -173,7 +230,9 @@ const components: Components = {
 export function Markdown({ children, className }: { children: string; className?: string }) {
 	return (
 		<div className={cn("flex flex-col gap-4", className)}>
-			<ReactMarkdown components={components}>{children}</ReactMarkdown>
+			<ReactMarkdown remarkPlugins={[remarkGfm, remarkBreaks]} components={components}>
+				{children}
+			</ReactMarkdown>
 		</div>
 	);
 }

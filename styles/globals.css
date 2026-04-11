@@ -65,7 +65,7 @@
 	--muted: oklch(0.97 0 0);
 	--muted-foreground: oklch(0.556 0 0);
 	--accent: oklch(0.97 0 0);
-	--accent-foreground: oklch(0.645 0.1978 41.15);
+	--accent-foreground: oklch(0.546 0.245 262.881);
 	--destructive: oklch(0.577 0.245 27.325);
 	--link: oklch(0.546 0.245 262.881);
 	--border: oklch(0.922 0 0);
@@ -82,7 +82,7 @@
 	--sidebar-primary: oklch(0.145 0 0);
 	--sidebar-primary-foreground: oklch(1 0 0);
 	--sidebar-accent: oklch(0.97 0 0);
-	--sidebar-accent-foreground: oklch(0.645 0.1978 41.15);
+	--sidebar-accent-foreground: oklch(0.546 0.245 262.881);
 	--sidebar-border: oklch(0.922 0 0);
 	--sidebar-ring: oklch(0.708 0 0);
 }
@@ -101,7 +101,7 @@
 	--muted: oklch(0.269 0 0);
 	--muted-foreground: oklch(0.708 0 0);
 	--accent: oklch(0.269 0 0);
-	--accent-foreground: oklch(0.645 0.1978 41.15);
+	--accent-foreground: oklch(0.707 0.165 254.624);
 	--destructive: oklch(0.704 0.191 22.216);
 	--link: oklch(0.707 0.165 254.624);
 	--border: oklch(1 0 0 / 10%);
@@ -117,7 +117,7 @@
 	--sidebar-primary: oklch(0.985 0 0);
 	--sidebar-primary-foreground: oklch(0.205 0 0);
 	--sidebar-accent: oklch(0.269 0 0);
-	--sidebar-accent-foreground: oklch(0.645 0.1978 41.15);
+	--sidebar-accent-foreground: oklch(0.707 0.165 254.624);
 	--sidebar-border: oklch(1 0 0 / 10%);
 	--sidebar-ring: oklch(0.556 0 0);
 }
@@ -167,6 +167,14 @@
 * {
 	scrollbar-width: thin;
 	scrollbar-color: var(--muted-foreground) transparent;
+}
+
+.no-scrollbar {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+	display: none;
 }
 
 .pdf-scroll {
