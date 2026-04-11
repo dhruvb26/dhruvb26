@@ -78,7 +78,8 @@ function TagLink({ children, href }: { children?: React.ReactNode; href?: string
 	);
 }
 
-const components: Components = {
+function getComponents(variant: "default" | "wiki"): Components {
+return {
 	h1: ({ children, ...props }) => (
 		<h1 className="text-2xl font-medium" {...props}>
 			{children}
@@ -95,6 +96,13 @@ const components: Components = {
 		</h3>
 	),
 	p: ({ children, ...props }) => {
+		if (variant === "wiki") {
+			return (
+				<p className="text-base text-muted-foreground leading-relaxed" {...props}>
+					{children}
+				</p>
+			);
+		}
 		const { body, links } = splitTrailingLinks(children);
 		if (links.length === 0) {
 			return (
@@ -226,11 +234,12 @@ const components: Components = {
 		</strong>
 	),
 };
+}
 
-export function Markdown({ children, className }: { children: string; className?: string }) {
+export function Markdown({ children, className, variant = "default" }: { children: string; className?: string; variant?: "default" | "wiki" }) {
 	return (
 		<div className={cn("flex flex-col gap-4", className)}>
-			<ReactMarkdown remarkPlugins={[remarkGfm, remarkBreaks]} components={components}>
+			<ReactMarkdown remarkPlugins={[remarkGfm, remarkBreaks]} components={getComponents(variant)}>
 				{children}
 			</ReactMarkdown>
 		</div>

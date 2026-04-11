@@ -17,7 +17,7 @@ export default async function WikiArticlePage({ params }: { params: Promise<{ sl
 	return (
 		<article className="max-w-2xl px-8 sm:px-12 md:px-16 py-10 md:py-16">
 			<h1 className="text-2xl font-medium mb-10">{article.title}</h1>
-			<Markdown>{content}</Markdown>
+			<Markdown variant="wiki">{content}</Markdown>
 		</article>
 	);
 }
