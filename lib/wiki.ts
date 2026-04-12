@@ -75,7 +75,7 @@ export async function getWikiCategories(): Promise<WikiCategory[]> {
 			categories.push(current);
 			continue;
 		}
-		const entry = line.match(/^- \[\[(.+?)\]\] — (.+)/);
+		const entry = line.match(/^- \[\[(.+?)\]\]\s*[-–—]\s*(.+)/);
 		if (entry && current) {
 			entries.push({ category: current, slug: entry[1], description: entry[2] });
 		}
