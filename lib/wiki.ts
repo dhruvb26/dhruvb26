@@ -104,7 +104,10 @@ export async function getWikiArticleExcerpt(slug: string): Promise<string> {
 		const withoutTitle = body.replace(/^# .+\n+/, "");
 		const firstParagraph = withoutTitle.split(/\n\n/)[0]?.trim() ?? "";
 		return firstParagraph
-			.replace(/\[\[(.+?)\]\]/g, (_, s: string) => slugToTitle(s))
+			.replace(/\[\[([^|\]]+?)(?:\|([^\]]+))?\]\]/g, (_, slugPart: string, alias?: string) => {
+				const slug = slugPart.trim();
+				return alias?.trim() ?? slug;
+			})
 			.replace(/[*_]/g, "");
 	} catch {
 		return "";
@@ -145,8 +148,9 @@ export async function getWikiSlugs(): Promise<string[]> {
 }
 
 export function processWikiLinks(content: string): string {
-	return content.replace(/\[\[(.+?)\]\]/g, (_, slug: string) => {
-		const title = slugToTitle(slug);
-		return `[${title}](/lab/wiki/${slug})`;
+	return content.replace(/\[\[([^|\]]+?)(?:\|([^\]]+))?\]\]/g, (_, slugPart: string, alias?: string) => {
+		const slug = slugPart.trim();
+		const label = alias?.trim() ?? slug;
+		return `[${label}](/lab/wiki/${slug})`;
 	});
 }
