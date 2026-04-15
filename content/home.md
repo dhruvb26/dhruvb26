@@ -6,7 +6,7 @@ Most recently worked on data pipelines at [Chunkr](https://chunkr.ai). Before th
 
 This site is a playground. Right now I'm working on training language models to negotiate.
 
-I built [Bluecast](https://www.bluecast.ai/), a SaaS tool for growing on LinkedIn before I walked away when the market got crowded. More recently, I've been [training language models to negotiate](https://github.com/dhruvb26/CSE485-Capstone) through self-play RL and GRPO, fine-tuning with LoRA first then moving to self-play on GPU clusters.
+I built [Bluecast](https://www.bluecast.ai/), a SaaS tool for growing on LinkedIn before I walked away when the market got crowded. More recently, I've been [training language models to negotiate](https://t7nw0vdho0.ufs.sh/f/wvRR96mLyWoQTPjFhXqLRUigva7CJrZOsXN20hy8jxWkSen3) through self-play RL and GRPO, fine-tuning with LoRA first then moving to self-play on GPU clusters.
 
 On the research side, I worked on [causal feature selection](https://github.com/dhruvb26/CSE472-blanket-challenge) to figure out which features actually cause the outcome by combining TabPFN embeddings with [neural Markov blanket predictors](https://t7nw0vdho0.ufs.sh/f/wvRR96mLyWoQIbU1jHV0sROT24EzxD9Y7vbcjKr5J6eulXgU). I also built a [multi-agent code generation](https://github.com/dhruvb26/CSE475-Project) system where [two RL agents collaborate](https://t7nw0vdho0.ufs.sh/f/wvRR96mLyWoQ1Qdnqm4fJUS9uxrbIaAHkNBpVKMGj7tgZh5C) to write better code than one. Outside of ML, I built [Athena](https://github.com/dhruvb26/athena) to learn iOS development. It generates quiz questions from your docs and sends them as notifications throughout the day.
 
