@@ -23,7 +23,7 @@ export default async function Home() {
 							<span className="flex items-center gap-2">
 								<a href="https://github.com/dhruvb26" target="_blank" rel="noopener noreferrer">
 									<Button
-										className="text-link text-lg px-0 transition-colors duration-300 ease-out hover:text-link/80"
+										className="text-link text-base px-0 transition-colors duration-300 ease-out hover:text-link/80"
 										variant="link"
 										hoverIcon={ArrowUpRightIcon}
 									>
@@ -36,7 +36,7 @@ export default async function Home() {
 									rel="noopener noreferrer"
 								>
 									<Button
-										className="text-link text-lg px-0 transition-colors duration-300 ease-out hover:text-link/80"
+										className="text-link text-base px-0 transition-colors duration-300 ease-out hover:text-link/80"
 										variant="link"
 										hoverIcon={ArrowUpRightIcon}
 									>
@@ -45,7 +45,7 @@ export default async function Home() {
 								</a>
 								<a href="/api/resume" download>
 									<Button
-										className="text-link text-lg px-0 transition-colors duration-300 ease-out hover:text-link/80"
+										className="text-link text-base px-0 transition-colors duration-300 ease-out hover:text-link/80"
 										variant="link"
 										hoverIcon={ArrowDownToLineIcon}
 									>

@@ -99,21 +99,21 @@ return {
 	p: ({ children, ...props }) => {
 		if (variant === "wiki") {
 			return (
-		<p className="text-lg text-muted-foreground leading-relaxed" {...props}>
-				{children}
-			</p>
-		);
-	}
-	const { body, links } = splitTrailingLinks(children);
-	if (links.length === 0) {
+				<p className="text-base text-muted-foreground leading-relaxed" {...props}>
+					{children}
+				</p>
+			);
+		}
+		const { body, links } = splitTrailingLinks(children);
+		if (links.length === 0) {
+			return (
+				<p className="text-base text-muted-foreground leading-relaxed" {...props}>
+					{children}
+				</p>
+			);
+		}
 		return (
-			<p className="text-lg text-muted-foreground leading-relaxed" {...props}>
-				{children}
-			</p>
-		);
-	}
-	return (
-		<div className="text-lg text-muted-foreground leading-relaxed">
+			<div className="text-base text-muted-foreground leading-relaxed">
 				<p>{body}</p>
 				<span className="inline-flex flex-wrap gap-1.5 mt-2">
 					{links.map((link) => {
@@ -153,7 +153,7 @@ return {
 		</ol>
 	),
 	li: ({ children, ...props }) => (
-		<li className="text-lg leading-relaxed" {...props}>
+		<li className="text-base leading-relaxed" {...props}>
 			{children}
 		</li>
 	),
