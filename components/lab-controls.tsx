@@ -25,21 +25,21 @@ export function LabControls() {
 			<button
 				type="button"
 				onClick={() => router.push("/")}
-				className="text-sm text-muted-foreground/50 hover:text-muted-foreground transition-colors duration-200"
+				className="text-base text-muted-foreground/50 hover:text-muted-foreground transition-colors duration-200"
 			>
 				Home
 			</button>
 			<button
 				type="button"
 				onClick={() => signOut()}
-				className="text-sm text-muted-foreground/50 hover:text-muted-foreground transition-colors duration-200"
+				className="text-base text-muted-foreground/50 hover:text-muted-foreground transition-colors duration-200"
 			>
 				Sign Out
 			</button>
 			<button
 				type="button"
 				onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-				className="text-sm text-muted-foreground/50 hover:text-muted-foreground transition-colors duration-200"
+				className="text-base text-muted-foreground/50 hover:text-muted-foreground transition-colors duration-200"
 			>
 				{theme === "dark" ? "Light" : "Dark"}
 			</button>

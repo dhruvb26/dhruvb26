@@ -13,7 +13,6 @@ export default function LabPage() {
 					<div className="w-full space-y-8">
 						<div className="flex flex-col items-start gap-2">
 							<h1 className="text-2xl font-medium">Lab</h1>
-							<p className="text-muted-foreground">Stuff</p>
 						</div>
 						<div className="grid grid-cols-3 gap-2">
 							<Link href="/lab/board">
