@@ -15,9 +15,12 @@ let files: string[];
 try {
 	files = fs.readdirSync(SOURCE);
 } catch (err) {
+	const code = (err as NodeJS.ErrnoException).code ?? "unknown error";
 	// biome-ignore lint/suspicious/noConsole: CLI script
-	console.warn(`[sync-wiki] cannot read ${SOURCE} (${(err as NodeJS.ErrnoException).code}), skipping`);
-	process.exit(0);
+	console.error(
+		`[sync-wiki] cannot read ${SOURCE} (${code}). Grant Full Disk Access to Cursor/your terminal and rerun the build.`,
+	);
+	process.exit(1);
 }
 
 fs.mkdirSync(DEST, { recursive: true });
