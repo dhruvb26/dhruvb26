@@ -11,13 +11,21 @@ if (!fs.existsSync(SOURCE)) {
 	process.exit(0);
 }
 
+let files: string[];
+try {
+	files = fs.readdirSync(SOURCE);
+} catch (err) {
+	// biome-ignore lint/suspicious/noConsole: CLI script
+	console.warn(`[sync-wiki] cannot read ${SOURCE} (${(err as NodeJS.ErrnoException).code}), skipping`);
+	process.exit(0);
+}
+
 fs.mkdirSync(DEST, { recursive: true });
 
 for (const existing of fs.readdirSync(DEST)) {
 	fs.rmSync(path.join(DEST, existing), { recursive: true });
 }
 
-const files = fs.readdirSync(SOURCE);
 let count = 0;
 
 for (const file of files) {
