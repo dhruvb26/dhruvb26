@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@import "katex/dist/katex.min.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -179,4 +180,16 @@
 
 .pdf-scroll {
 	scrollbar-color: oklch(0.7 0 0) transparent;
+}
+
+.research-document .katex-display {
+	margin: 0.75rem 0;
+	overflow-x: auto;
+	overflow-y: hidden;
+	padding: 0.75rem 0.125rem;
+	color: var(--foreground);
+}
+
+.research-document .katex {
+	font-size: 1em;
 }

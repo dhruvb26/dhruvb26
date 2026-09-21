@@ -1,11 +1,11 @@
 # Dhruv Bansal
 
-Senior at [ASU](https://www.asu.edu). I spend most of my time thinking about distributed systems, reinforcement learning, and how to build things that don't fall apart at scale.
+Graduated from [ASU](https://www.asu.edu) and now building at [Blueberry](https://blueberry.ai). We're making AI agents that help consumer brands get to know and talk to the people behind their social audience.
 
-Most recently worked on data pipelines at [Chunkr](https://chunkr.ai). Before that, built internal tools at [Oats Overnight](https://oatsovernight.com) and automated data workflows at [PrivateBlok](https://privateblok.ai/home).
+Most of what I'm curious about sits around AI agents: how they use context and memory, how they get better, and how to keep them from falling over in production.
 
-I built [Bluecast](https://www.bluecast.ai/), a SaaS tool for growing on LinkedIn before I walked away when the market got crowded. More recently, I've been [training language models to negotiate](https://t7nw0vdho0.ufs.sh/f/wvRR96mLyWoQLPt1mWhzT6jgEuUIeGQCFJwk208yLlnRK4Yq).
+I've also written about [embedding-based feature selection](#project-feature-selection), [multi-agent code generation](#project-multi-agent-code-generation), and [training negotiation agents through self-play](#project-negotiation-agents).
 
-On the research side, I worked on [causal feature selection](https://github.com/dhruvb26/CSE472-blanket-challenge) to figure out which features actually cause the outcome by combining TabPFN embeddings with [neural Markov blanket predictors](https://t7nw0vdho0.ufs.sh/f/wvRR96mLyWoQIbU1jHV0sROT24EzxD9Y7vbcjKr5J6eulXgU). I also built a [multi-agent code generation](https://github.com/dhruvb26/CSE475-Project) system where [two RL agents collaborate](https://t7nw0vdho0.ufs.sh/f/wvRR96mLyWoQ1Qdnqm4fJUS9uxrbIaAHkNBpVKMGj7tgZh5C) to write better code than one. Outside of ML, I built [Athena](https://github.com/dhruvb26/athena) to learn iOS development. It generates quiz questions from your docs and sends them as notifications throughout the day.
+Before Blueberry, I worked on document-processing systems and data discovery at [Chunkr](https://chunkr.ai), built internal tools at [Oats Overnight](https://oatsovernight.com), and automated data workflows at [PrivateBlok](https://kpmg.com/us/en/media/news/privateblok-agentic-ai.html).
 
-Won [first place in the Sustainability track at HackHarvard '24](https://www.linkedin.com/posts/shreyasbachiraju_hackharvard2024-sustainability-urbanplanning-activity-7251783520820289536-puGI) using satellite imagery to detect urban heat islands and surface actionable planning insights. I was also one of 18 selected from ASU out of 2,512 applicants for a [DAAD RISE research grant](https://www.daad.de/rise/en/) from the German Academic Exchange Service.
+I learn best by building small things. I keep a running collection of things I've found interesting—from agent architectures and personal knowledge systems to graphics programming, deep focus, and life design.

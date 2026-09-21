@@ -44,3 +44,6 @@ next-env.d.ts
 
 # wiki content (synced from Vault at build time)
 /content/wiki/
+
+# clerk configuration (can include secrets)
+/.clerk/

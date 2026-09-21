@@ -18,9 +18,6 @@ export default function LabPage() {
 							<Link href="/lab/board">
 								<Card className="p-4 hover:bg-muted transition-colors text-base">Mood Board</Card>
 							</Link>
-							<Link href="/lab/wiki">
-								<Card className="p-4 hover:bg-muted transition-colors text-base">Wiki</Card>
-							</Link>
 						</div>
 					</div>
 				</main>

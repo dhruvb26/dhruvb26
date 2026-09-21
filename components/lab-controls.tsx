@@ -1,6 +1,6 @@
 "use client";
 
-import { useClerk } from "@clerk/nextjs";
+import { Show, useClerk } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import { useSyncExternalStore } from "react";
@@ -29,13 +29,15 @@ export function LabControls() {
 			>
 				Home
 			</button>
-			<button
-				type="button"
-				onClick={() => signOut()}
-				className="text-sm text-muted-foreground/50 hover:text-muted-foreground transition-colors duration-200"
-			>
-				Sign Out
-			</button>
+			<Show when="signed-in" fallback={null}>
+				<button
+					type="button"
+					onClick={() => signOut()}
+					className="text-sm text-muted-foreground/50 hover:text-muted-foreground transition-colors duration-200"
+				>
+					Sign Out
+				</button>
+			</Show>
 			<button
 				type="button"
 				onClick={() => setTheme(theme === "dark" ? "light" : "dark")}

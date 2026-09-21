@@ -1,9 +1,10 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
 const isProtectedRoute = createRouteMatcher(["/lab(.*)"]);
+const isPublicWikiRoute = createRouteMatcher(["/lab/wiki(.*)"]);
 
 export default clerkMiddleware(async (auth, req) => {
-	if (isProtectedRoute(req)) {
+	if (isProtectedRoute(req) && !isPublicWikiRoute(req)) {
 		await auth.protect();
 	}
 });

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Suspense } from "react";
 import "@/styles/globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
@@ -41,13 +42,15 @@ export default function RootLayout({
 			className={`h-full antialiased font-sans ${diatypeRounded.variable} ${departureMono.variable}`}
 		>
 			<body className="min-h-full flex flex-col">
-				<ClerkProvider>
-					<ThemeProvider attribute="class" defaultTheme="light" disableTransitionOnChange>
-						<NextSSRPlugin routerConfig={uploadthingRouterConfig} />
-						{children}
-						<Toaster />
-					</ThemeProvider>
-				</ClerkProvider>
+				<ThemeProvider attribute="class" defaultTheme="light" disableTransitionOnChange>
+					<NextSSRPlugin routerConfig={uploadthingRouterConfig} />
+					<Suspense>
+						<ClerkProvider>
+							{children}
+							<Toaster />
+						</ClerkProvider>
+					</Suspense>
+				</ThemeProvider>
 			</body>
 		</html>
 	);
