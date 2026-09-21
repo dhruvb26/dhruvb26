@@ -83,14 +83,14 @@ export function HomeSectionNav() {
 						onClick={() => scrollTo(section.id)}
 						aria-label={`Scroll to ${section.label}`}
 						aria-current={activeSection === section.id ? "location" : undefined}
-						className="group flex h-3 w-8 items-center justify-end"
+						className="group flex size-4 items-center justify-center"
 					>
 						<span
 							className={cn(
-								"h-px transition-all duration-200",
+								"rounded-full transition-all duration-200",
 								activeSection === section.id
-									? "w-5 bg-muted-foreground/60"
-									: "w-4 bg-muted-foreground/30 group-hover:w-[1.125rem] group-hover:bg-muted-foreground/45",
+									? "size-1.5 bg-muted-foreground/60"
+									: "size-1 bg-muted-foreground/30 group-hover:size-1.5 group-hover:bg-muted-foreground/45",
 							)}
 						/>
 					</button>
