@@ -77,7 +77,7 @@ export function WikiShell({
 				</header>
 				<div className="flex-1 overflow-y-auto">{children}</div>
 			</SidebarInset>
-			<LabControls />
+			<LabControls showHome={false} />
 		</SidebarProvider>
 	);
 }

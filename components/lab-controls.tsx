@@ -8,7 +8,7 @@ import { useSyncExternalStore } from "react";
 // biome-ignore lint/suspicious/noEmptyBlockStatements: noop for client-only gate
 const emptySubscribe = () => () => {};
 
-export function LabControls() {
+export function LabControls({ showHome = true }: { showHome?: boolean }) {
 	const { signOut } = useClerk();
 	const { theme, setTheme } = useTheme();
 	const router = useRouter();
@@ -22,13 +22,15 @@ export function LabControls() {
 
 	return (
 		<div className="fixed bottom-6 right-6 z-50 flex items-center gap-4">
-			<button
-				type="button"
-				onClick={() => router.push("/")}
-				className="text-sm text-muted-foreground/50 hover:text-muted-foreground transition-colors duration-200"
-			>
-				Home
-			</button>
+			{showHome && (
+				<button
+					type="button"
+					onClick={() => router.push("/")}
+					className="text-sm text-muted-foreground/50 hover:text-muted-foreground transition-colors duration-200"
+				>
+					Home
+				</button>
+			)}
 			<Show when="signed-in" fallback={null}>
 				<button
 					type="button"

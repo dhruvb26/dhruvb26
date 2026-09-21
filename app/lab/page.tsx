@@ -14,11 +14,9 @@ export default function LabPage() {
 						<div className="flex flex-col items-start gap-2">
 							<h1 className="text-2xl font-medium">Lab</h1>
 						</div>
-						<div className="grid grid-cols-3 gap-2">
-							<Link href="/lab/board">
-								<Card className="p-4 hover:bg-muted transition-colors text-base">Mood Board</Card>
-							</Link>
-						</div>
+						<Link href="/lab/board" className="block w-full sm:w-1/3">
+							<Card className="p-4 hover:bg-muted transition-colors text-base">Mood Board</Card>
+						</Link>
 					</div>
 				</main>
 				<LabControls />

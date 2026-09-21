@@ -3,49 +3,47 @@ import ReactMarkdown, { type Components } from "react-markdown";
 import rehypeKatex from "rehype-katex";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
-import { markdownHeadingClassNames } from "@/components/markdown";
+import { isExternal, markdownHeadingClassNames } from "@/components/markdown";
 import { cn } from "@/lib/utils";
 
 const components: Components = {
-	h1: ({ children, ...props }) => (
+	h1: ({ children, node: _node, ...props }) => (
 		<h2 className={markdownHeadingClassNames.h1} {...props}>
 			{children}
 		</h2>
 	),
-	h2: ({ children, ...props }) => (
+	h2: ({ children, node: _node, ...props }) => (
 		<h3 className={markdownHeadingClassNames.h2} {...props}>
 			{children}
 		</h3>
 	),
-	h3: ({ children, ...props }) => (
+	h3: ({ children, node: _node, ...props }) => (
 		<h4 className={markdownHeadingClassNames.h3} {...props}>
 			{children}
 		</h4>
 	),
-	h4: ({ children, ...props }) => (
+	h4: ({ children, node: _node, ...props }) => (
 		<h5 className={markdownHeadingClassNames.h4} {...props}>
 			{children}
 		</h5>
 	),
-	p: ({ children, ...props }) => (
+	p: ({ children, node: _node, ...props }) => (
 		<p className="text-base leading-7 text-muted-foreground" {...props}>
 			{children}
 		</p>
 	),
-	a: ({ children, href, ...props }) => (
+	a: ({ children, href, node: _node, ...props }) => (
 		<a
 			href={href}
 			className="text-link transition-colors hover:text-link/80"
-			{...(href?.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+			{...(isExternal(href) ? { target: "_blank", rel: "noopener noreferrer" } : {})}
 			{...props}
 		>
 			{children}
-			{href?.startsWith("http") && (
-				<ArrowUpRightIcon className="ml-0.5 inline size-3 align-baseline" />
-			)}
+			{isExternal(href) && <ArrowUpRightIcon className="ml-0.5 inline size-3 align-baseline" />}
 		</a>
 	),
-	ul: ({ children, ...props }) => (
+	ul: ({ children, node: _node, ...props }) => (
 		<ul
 			className="ml-5 list-disc space-y-2 text-muted-foreground marker:text-foreground/40"
 			{...props}
@@ -53,7 +51,7 @@ const components: Components = {
 			{children}
 		</ul>
 	),
-	ol: ({ children, ...props }) => (
+	ol: ({ children, node: _node, ...props }) => (
 		<ol
 			className="ml-5 list-decimal space-y-2 text-muted-foreground marker:text-foreground/40"
 			{...props}
@@ -61,17 +59,17 @@ const components: Components = {
 			{children}
 		</ol>
 	),
-	li: ({ children, ...props }) => (
+	li: ({ children, node: _node, ...props }) => (
 		<li className="pl-1 leading-7" {...props}>
 			{children}
 		</li>
 	),
-	blockquote: ({ children, ...props }) => (
+	blockquote: ({ children, node: _node, ...props }) => (
 		<blockquote className="border-l-2 border-link/40 pl-5 text-muted-foreground italic" {...props}>
 			{children}
 		</blockquote>
 	),
-	code: ({ children, className, ...props }) =>
+	code: ({ children, className, node: _node, ...props }) =>
 		className ? (
 			<code className={cn("font-mono text-sm", className)} {...props}>
 				{children}
@@ -84,7 +82,7 @@ const components: Components = {
 				{children}
 			</code>
 		),
-	pre: ({ children, ...props }) => (
+	pre: ({ children, node: _node, ...props }) => (
 		<pre
 			className="overflow-x-auto rounded-md border border-border bg-muted/50 p-4 text-foreground"
 			{...props}
@@ -92,34 +90,34 @@ const components: Components = {
 			{children}
 		</pre>
 	),
-	table: ({ children, ...props }) => (
+	table: ({ children, node: _node, ...props }) => (
 		<div className="overflow-x-auto rounded-md border border-border">
 			<table className="w-full border-collapse text-sm" {...props}>
 				{children}
 			</table>
 		</div>
 	),
-	thead: ({ children, ...props }) => (
+	thead: ({ children, node: _node, ...props }) => (
 		<thead className="border-b border-border bg-muted/50 text-foreground" {...props}>
 			{children}
 		</thead>
 	),
-	tbody: ({ children, ...props }) => (
+	tbody: ({ children, node: _node, ...props }) => (
 		<tbody className="divide-y divide-border text-muted-foreground" {...props}>
 			{children}
 		</tbody>
 	),
-	th: ({ children, ...props }) => (
+	th: ({ children, node: _node, ...props }) => (
 		<th className="px-4 py-3 text-left font-medium" {...props}>
 			{children}
 		</th>
 	),
-	td: ({ children, ...props }) => (
+	td: ({ children, node: _node, ...props }) => (
 		<td className="px-4 py-3 align-top" {...props}>
 			{children}
 		</td>
 	),
-	img: ({ src, alt, ...props }) => (
+	img: ({ src, alt, node: _node, ...props }) => (
 		// biome-ignore lint/performance/noImgElement: research sources may use remote images
 		<img
 			src={src}
@@ -129,8 +127,8 @@ const components: Components = {
 			{...props}
 		/>
 	),
-	hr: (props) => <hr className="my-10 border-border" {...props} />,
-	strong: ({ children, ...props }) => (
+	hr: ({ node: _node, ...props }) => <hr className="my-10 border-border" {...props} />,
+	strong: ({ children, node: _node, ...props }) => (
 		<strong className="font-medium text-foreground" {...props}>
 			{children}
 		</strong>

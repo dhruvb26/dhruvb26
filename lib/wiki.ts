@@ -61,7 +61,13 @@ export async function getWikiCategories(): Promise<WikiCategory[]> {
 	cacheLife("max");
 	cacheTag("wiki");
 
-	const raw = await fs.readFile(path.join(WIKI_DIR, "INDEX.md"), "utf-8");
+	let raw: string;
+	try {
+		raw = await fs.readFile(path.join(WIKI_DIR, "INDEX.md"), "utf-8");
+	} catch (error) {
+		if ((error as NodeJS.ErrnoException).code === "ENOENT") return [];
+		throw error;
+	}
 	const categories: WikiCategory[] = [];
 	let current: WikiCategory | null = null;
 
@@ -141,16 +147,25 @@ export async function getWikiSlugs(): Promise<string[]> {
 	cacheLife("max");
 	cacheTag("wiki");
 
-	const files = await fs.readdir(WIKI_DIR);
+	let files: string[];
+	try {
+		files = await fs.readdir(WIKI_DIR);
+	} catch (error) {
+		if ((error as NodeJS.ErrnoException).code === "ENOENT") return [];
+		throw error;
+	}
 	return files
 		.filter((f) => f.endsWith(".md") && f !== "INDEX.md")
 		.map((f) => f.replace(/\.md$/, ""));
 }
 
 export function processWikiLinks(content: string): string {
-	return content.replace(/\[\[([^|\]]+?)(?:\|([^\]]+))?\]\]/g, (_, slugPart: string, alias?: string) => {
-		const slug = slugPart.trim();
-		const label = alias?.trim() ?? slug;
-		return `[${label}](/lab/wiki/${slug})`;
-	});
+	return content.replace(
+		/\[\[([^|\]]+?)(?:\|([^\]]+))?\]\]/g,
+		(_, slugPart: string, alias?: string) => {
+			const slug = slugPart.trim();
+			const label = alias?.trim() ?? slug;
+			return `[${label}](/lab/wiki/${slug})`;
+		},
+	);
 }

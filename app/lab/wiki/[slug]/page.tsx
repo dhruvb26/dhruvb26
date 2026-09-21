@@ -4,7 +4,7 @@ import { getWikiArticle, getWikiSlugs, processWikiLinks } from "@/lib/wiki";
 
 export async function generateStaticParams() {
 	const slugs = await getWikiSlugs();
-	return slugs.map((slug) => ({ slug }));
+	return (slugs.length > 0 ? slugs : ["__placeholder__"]).map((slug) => ({ slug }));
 }
 
 export default async function WikiArticlePage({ params }: { params: Promise<{ slug: string }> }) {

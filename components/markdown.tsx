@@ -43,7 +43,7 @@ function splitTrailingLinks(children: React.ReactNode) {
 	return { body: arr.slice(0, splitIdx), links: trailingLinks };
 }
 
-function isExternal(href?: string) {
+export function isExternal(href?: string) {
 	return href?.startsWith("http") || href?.startsWith("//");
 }
 
@@ -88,27 +88,27 @@ function TagLink({ children, href }: { children?: React.ReactNode; href?: string
 
 function getComponents(variant: "default" | "wiki"): Components {
 	return {
-		h1: ({ children, ...props }) => (
+		h1: ({ children, node: _node, ...props }) => (
 			<h1 className={markdownHeadingClassNames.h1} {...props}>
 				{children}
 			</h1>
 		),
-		h2: ({ children, ...props }) => (
+		h2: ({ children, node: _node, ...props }) => (
 			<h2 className={markdownHeadingClassNames.h2} {...props}>
 				{children}
 			</h2>
 		),
-		h3: ({ children, ...props }) => (
+		h3: ({ children, node: _node, ...props }) => (
 			<h3 className={markdownHeadingClassNames.h3} {...props}>
 				{children}
 			</h3>
 		),
-		h4: ({ children, ...props }) => (
+		h4: ({ children, node: _node, ...props }) => (
 			<h4 className={markdownHeadingClassNames.h4} {...props}>
 				{children}
 			</h4>
 		),
-		p: ({ children, ...props }) => {
+		p: ({ children, node: _node, ...props }) => {
 			if (variant === "wiki") {
 				return (
 					<p className="text-base text-muted-foreground leading-relaxed" {...props}>
@@ -141,7 +141,7 @@ function getComponents(variant: "default" | "wiki"): Components {
 				</div>
 			);
 		},
-		a: ({ children, href, ...props }) => {
+		a: ({ children, href, node: _node, ...props }) => {
 			if (variant === "wiki" && href && !isExternal(href)) {
 				return (
 					<Link
@@ -158,27 +158,27 @@ function getComponents(variant: "default" | "wiki"): Components {
 				</InlineLink>
 			);
 		},
-		ul: ({ children, ...props }) => (
+		ul: ({ children, node: _node, ...props }) => (
 			<ul className="list-disc pl-6 text-muted-foreground space-y-1" {...props}>
 				{children}
 			</ul>
 		),
-		ol: ({ children, ...props }) => (
+		ol: ({ children, node: _node, ...props }) => (
 			<ol className="list-decimal pl-6 text-muted-foreground space-y-1" {...props}>
 				{children}
 			</ol>
 		),
-		li: ({ children, ...props }) => (
+		li: ({ children, node: _node, ...props }) => (
 			<li className="text-base leading-relaxed" {...props}>
 				{children}
 			</li>
 		),
-		blockquote: ({ children, ...props }) => (
+		blockquote: ({ children, node: _node, ...props }) => (
 			<blockquote className="border-l-2 border-border pl-4 text-muted-foreground italic" {...props}>
 				{children}
 			</blockquote>
 		),
-		code: ({ children, className: codeClassName, ...props }) => {
+		code: ({ children, className: codeClassName, node: _node, ...props }) => {
 			const isInline = !codeClassName;
 			return isInline ? (
 				<code className="rounded bg-muted px-1.5 py-0.5 text-sm font-mono" {...props}>
@@ -196,12 +196,12 @@ function getComponents(variant: "default" | "wiki"): Components {
 				</code>
 			);
 		},
-		pre: ({ children, ...props }) => (
+		pre: ({ children, node: _node, ...props }) => (
 			<pre className="rounded-md bg-muted p-4 overflow-x-auto" {...props}>
 				{children}
 			</pre>
 		),
-		img: ({ src, alt, ...props }) => (
+		img: ({ src, alt, node: _node, ...props }) => (
 			// biome-ignore lint/performance/noImgElement: external URLs from markdown, can't use next/image
 			<img
 				src={src}
@@ -211,40 +211,40 @@ function getComponents(variant: "default" | "wiki"): Components {
 				{...props}
 			/>
 		),
-		table: ({ children, ...props }) => (
+		table: ({ children, node: _node, ...props }) => (
 			<div className="overflow-x-auto my-1">
 				<table className="w-full border-collapse text-sm" {...props}>
 					{children}
 				</table>
 			</div>
 		),
-		thead: ({ children, ...props }) => (
+		thead: ({ children, node: _node, ...props }) => (
 			<thead className="border-b border-border" {...props}>
 				{children}
 			</thead>
 		),
-		tbody: ({ children, ...props }) => (
+		tbody: ({ children, node: _node, ...props }) => (
 			<tbody className="divide-y divide-border" {...props}>
 				{children}
 			</tbody>
 		),
-		tr: ({ children, ...props }) => <tr {...props}>{children}</tr>,
-		th: ({ children, ...props }) => (
+		tr: ({ children, node: _node, ...props }) => <tr {...props}>{children}</tr>,
+		th: ({ children, node: _node, ...props }) => (
 			<th className="px-3 py-2 text-left font-medium text-foreground" {...props}>
 				{children}
 			</th>
 		),
-		td: ({ children, ...props }) => (
+		td: ({ children, node: _node, ...props }) => (
 			<td className="px-3 py-2 text-muted-foreground" {...props}>
 				{children}
 			</td>
 		),
-		del: ({ children, ...props }) => (
+		del: ({ children, node: _node, ...props }) => (
 			<del className="text-muted-foreground/60 line-through" {...props}>
 				{children}
 			</del>
 		),
-		input: ({ type, checked, ...props }) =>
+		input: ({ type, checked, node: _node, ...props }) =>
 			type === "checkbox" ? (
 				<input
 					type="checkbox"
@@ -256,8 +256,8 @@ function getComponents(variant: "default" | "wiki"): Components {
 			) : (
 				<input type={type} {...props} />
 			),
-		hr: (props) => <hr className="border-border" {...props} />,
-		strong: ({ children, ...props }) => (
+		hr: ({ node: _node, ...props }) => <hr className="border-border" {...props} />,
+		strong: ({ children, node: _node, ...props }) => (
 			<strong className="font-medium text-foreground" {...props}>
 				{children}
 			</strong>

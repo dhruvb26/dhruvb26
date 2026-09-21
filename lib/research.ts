@@ -1,6 +1,5 @@
 import { Cite } from "@citation-js/core";
 import "@citation-js/plugin-bibtex";
-import { cacheLife } from "next/cache";
 
 const documents = {
 	"feature-selection": {
@@ -216,9 +215,6 @@ function normalizeSource(source: string, sourceUrl: string, bibliography: string
 }
 
 export async function getResearchDocument(slug: ResearchSlug) {
-	"use cache";
-	cacheLife("days");
-
 	const metadata = documents[slug];
 	const [sourceResponse, bibliographyResponse] = await Promise.all([
 		fetch(metadata.sourceUrl),

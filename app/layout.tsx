@@ -45,11 +45,9 @@ export default function RootLayout({
 				<ThemeProvider attribute="class" defaultTheme="light" disableTransitionOnChange>
 					<NextSSRPlugin routerConfig={uploadthingRouterConfig} />
 					<Suspense>
-						<ClerkProvider>
-							{children}
-							<Toaster />
-						</ClerkProvider>
+						<ClerkProvider>{children}</ClerkProvider>
 					</Suspense>
+					<Toaster />
 				</ThemeProvider>
 			</body>
 		</html>
