@@ -87,7 +87,7 @@ export function HomeSectionNav() {
 					>
 						<span
 							className={cn(
-								"h-0.5 rounded-full transition-all duration-200",
+								"h-[3px] rounded-full transition-all duration-200",
 								activeSection === section.id
 									? "w-4 bg-muted-foreground/60"
 									: "w-3 bg-muted-foreground/30 group-hover:w-3.5 group-hover:bg-muted-foreground/45",

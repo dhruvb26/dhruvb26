@@ -167,7 +167,27 @@
 
 * {
 	scrollbar-width: thin;
-	scrollbar-color: var(--muted-foreground) transparent;
+	scrollbar-color: color-mix(in oklab, var(--muted-foreground) 30%, transparent) transparent;
+}
+
+*::-webkit-scrollbar {
+	width: 0.5rem;
+	height: 0.5rem;
+}
+
+*::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+	border: 2px solid transparent;
+	border-radius: 999px;
+	background-color: color-mix(in oklab, var(--muted-foreground) 30%, transparent);
+	background-clip: content-box;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+	background-color: color-mix(in oklab, var(--muted-foreground) 60%, transparent);
 }
 
 .no-scrollbar {
@@ -176,10 +196,6 @@
 }
 .no-scrollbar::-webkit-scrollbar {
 	display: none;
-}
-
-.pdf-scroll {
-	scrollbar-color: oklch(0.7 0 0) transparent;
 }
 
 .research-document .katex-display {
