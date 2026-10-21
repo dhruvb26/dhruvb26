@@ -11,6 +11,10 @@ import { Button } from "@/components/ui/button";
 import { getResearchDocument, getResearchMetadata, getResearchSlugs } from "@/lib/research";
 import { getWikiCategories } from "@/lib/wiki";
 
+function wikiCategoryId(name: string) {
+	return `wiki-${name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "")}`;
+}
+
 export default async function Home() {
 	"use cache";
 	cacheLife("days");
@@ -121,7 +125,7 @@ export default async function Home() {
 						</div>
 						<div className="space-y-7">
 							{wikiCategories.map((category) => (
-								<div key={category.name}>
+								<div key={category.name} id={wikiCategoryId(category.name)} className="scroll-mt-24">
 									<h3 className="mb-3 text-sm text-muted-foreground">{category.name}</h3>
 									<div className="grid grid-cols-1 gap-x-8 gap-y-2 sm:grid-cols-2">
 										{category.entries.map((entry) => (
