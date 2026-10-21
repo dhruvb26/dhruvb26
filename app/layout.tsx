@@ -26,8 +26,22 @@ const departureMono = localFont({
 const uploadthingRouterConfig = extractRouterConfig(ourFileRouter);
 
 export const metadata: Metadata = {
+	metadataBase: new URL("https://www.dhruv-b.dev"),
 	title: "Dhruv Bansal",
 	description: "my personal website",
+	// The share thumbnail itself comes from app/opengraph-image.tsx.
+	openGraph: {
+		title: "Dhruv Bansal",
+		description: "my personal website",
+		url: "https://www.dhruv-b.dev",
+		siteName: "Dhruv Bansal",
+		type: "website",
+	},
+	twitter: {
+		card: "summary_large_image",
+		title: "Dhruv Bansal",
+		description: "my personal website",
+	},
 };
 
 export default function RootLayout({
