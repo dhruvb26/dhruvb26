@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import "@/styles/globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
+import { Analytics } from "@vercel/analytics/next";
 import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "@/app/api/uploadthing/core";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -63,6 +64,7 @@ export default function RootLayout({
 					</Suspense>
 					<Toaster />
 				</ThemeProvider>
+				<Analytics />
 			</body>
 		</html>
 	);
