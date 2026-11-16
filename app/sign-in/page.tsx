@@ -31,7 +31,7 @@ export default function SignInPage() {
 					navigate: ({ session, decorateUrl }) => {
 						if (session?.currentTask) return;
 
-						const url = decorateUrl("/lab");
+						const url = decorateUrl("/lab/board");
 						if (url.startsWith("http")) {
 							window.location.href = url;
 						} else {
@@ -53,7 +53,7 @@ export default function SignInPage() {
 						<Input
 							name="username"
 							type="text"
-							placeholder="username"
+							placeholder="Username"
 							required
 							autoComplete="off"
 							autoCorrect="off"
@@ -71,7 +71,7 @@ export default function SignInPage() {
 						<Input
 							name="password"
 							type="password"
-							placeholder="password"
+							placeholder="Password"
 							required
 							autoComplete="off"
 							data-1p-ignore
@@ -89,7 +89,7 @@ export default function SignInPage() {
 						disabled={fetchStatus === "fetching"}
 						className="w-full"
 					>
-						{fetchStatus === "fetching" ? <Spinner /> : "continue"}
+						{fetchStatus === "fetching" ? <Spinner /> : "Continue"}
 					</Button>
 				</form>
 

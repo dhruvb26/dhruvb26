@@ -4,21 +4,22 @@ import rehypeKatex from "rehype-katex";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import { isExternal, markdownHeadingClassNames } from "@/components/markdown";
+import { hoverArrowClass } from "@/lib/hover-arrow";
 import { cn } from "@/lib/utils";
 
 const components: Components = {
 	h1: ({ children, node: _node, ...props }) => (
-		<h2 className={markdownHeadingClassNames.h1} {...props}>
+		<h2 className={markdownHeadingClassNames.h2} {...props}>
 			{children}
 		</h2>
 	),
 	h2: ({ children, node: _node, ...props }) => (
-		<h3 className={markdownHeadingClassNames.h2} {...props}>
+		<h3 className={markdownHeadingClassNames.h3} {...props}>
 			{children}
 		</h3>
 	),
 	h3: ({ children, node: _node, ...props }) => (
-		<h4 className={markdownHeadingClassNames.h3} {...props}>
+		<h4 className={markdownHeadingClassNames.h4} {...props}>
 			{children}
 		</h4>
 	),
@@ -32,17 +33,27 @@ const components: Components = {
 			{children}
 		</p>
 	),
-	a: ({ children, href, node: _node, ...props }) => (
-		<a
-			href={href}
-			className="text-link transition-colors hover:text-link/80"
-			{...(isExternal(href) ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-			{...props}
-		>
-			{children}
-			{isExternal(href) && <ArrowUpRightIcon className="ml-0.5 inline size-3 align-baseline" />}
-		</a>
-	),
+	a: ({ children, href, node: _node, ...props }) => {
+		const external = isExternal(href);
+		return (
+			<a
+				href={href}
+				className={cn(
+					"text-link transition-colors hover:text-link/80",
+					external && "group/link inline-flex items-center",
+				)}
+				{...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+				{...props}
+			>
+				{children}
+				{external && (
+					<span className={hoverArrowClass}>
+						<ArrowUpRightIcon aria-hidden="true" className="size-4 shrink-0" strokeWidth={2.75} />
+					</span>
+				)}
+			</a>
+		);
+	},
 	ul: ({ children, node: _node, ...props }) => (
 		<ul
 			className="ml-5 list-disc space-y-2 text-muted-foreground marker:text-foreground/40"

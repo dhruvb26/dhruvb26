@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 import { Suspense } from "react";
 import "@/styles/globals.css";
@@ -10,10 +11,9 @@ import { ourFileRouter } from "@/app/api/uploadthing/core";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 
-const diatypeRounded = localFont({
-	src: "../public/fonts/diatype-rounded.woff2",
-	variable: "--font-diatype-rounded",
-	weight: "100 900",
+const inter = Inter({
+	subsets: ["latin"],
+	variable: "--font-inter",
 	display: "swap",
 });
 
@@ -54,10 +54,10 @@ export default function RootLayout({
 		<html
 			lang="en"
 			suppressHydrationWarning
-			className={`h-full antialiased font-sans ${diatypeRounded.variable} ${departureMono.variable}`}
+			className={`h-full antialiased font-sans ${inter.variable} ${departureMono.variable}`}
 		>
 			<body className="min-h-full flex flex-col">
-				<ThemeProvider attribute="class" defaultTheme="light" disableTransitionOnChange>
+				<ThemeProvider attribute="class" forcedTheme="light" disableTransitionOnChange>
 					<NextSSRPlugin routerConfig={uploadthingRouterConfig} />
 					<Suspense>
 						<ClerkProvider>{children}</ClerkProvider>

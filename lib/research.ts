@@ -228,9 +228,12 @@ export async function getResearchDocument(slug: ResearchSlug) {
 	}
 
 	const source = await sourceResponse.text();
-	return normalizeSource(
+	const normalized = normalizeSource(
 		"excerpt" in metadata ? extractAbstractAndIntroduction(source) : source,
 		metadata.sourceUrl,
 		await bibliographyResponse.text(),
 	);
+	return "preprintUrl" in metadata
+		? `${normalized.trimEnd()}\n\n[Read the anonymous preprint](${metadata.preprintUrl})`
+		: normalized;
 }

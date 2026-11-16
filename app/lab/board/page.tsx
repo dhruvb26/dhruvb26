@@ -1,8 +1,7 @@
 "use client";
 
 import { Show } from "@clerk/nextjs";
-import { ArrowLeft, X } from "lucide-react";
-import Link from "next/link";
+import { X } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { LabControls } from "@/components/lab-controls";
@@ -167,13 +166,6 @@ export default function BoardPage() {
 						<p className="text-base text-muted-foreground">drop to upload</p>
 					</div>
 				)}
-				<Link
-					href="/lab"
-					className="fixed top-3 left-3 z-10 size-8 rounded-full flex items-center justify-center hover:bg-muted transition-colors"
-				>
-					<ArrowLeft className="size-4 text-muted-foreground" />
-				</Link>
-
 				<main className="flex flex-1 w-full max-w-7xl mx-auto md:ml-[8%] md:mr-auto flex-col gap-8 py-16 px-6 sm:px-10 md:px-16 bg-background">
 					{loading ? (
 						<div className="fixed inset-0 flex items-center justify-center">
@@ -184,7 +176,7 @@ export default function BoardPage() {
 					)}
 				</main>
 
-				<div className="fixed bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2">
+				<div className="fixed bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2 lg:bottom-12">
 					{isUploading ? (
 						<Spinner className="size-3.5 text-muted-foreground/50" />
 					) : (
@@ -193,7 +185,7 @@ export default function BoardPage() {
 							onClick={() => inputRef.current?.click()}
 							className="text-base text-muted-foreground/50 hover:text-muted-foreground transition-colors"
 						>
-							drop images here
+							Drop
 						</button>
 					)}
 				</div>

@@ -49,9 +49,17 @@ export function isExternal(href?: string) {
 
 function InlineLink({ children, href, ...props }: React.ComponentProps<"a">) {
 	const external = isExternal(href);
+	const className = "text-link transition-colors duration-300 ease-out hover:text-link/80";
+	if (href?.startsWith("/") && !external) {
+		return (
+			<Link href={href} className={className} {...props}>
+				{children}
+			</Link>
+		);
+	}
 	return (
 		<a
-			className="text-link transition-colors duration-300 ease-out hover:text-link/80"
+			className={className}
 			href={href}
 			{...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
 			{...props}
@@ -59,6 +67,24 @@ function InlineLink({ children, href, ...props }: React.ComponentProps<"a">) {
 			{children}
 		</a>
 	);
+}
+
+function originalWikiImageSrc(src?: string | Blob) {
+	if (typeof src !== "string") return src;
+	try {
+		const url = new URL(src);
+		if (url.pathname.endsWith("/_next/image")) {
+			const original = url.searchParams.get("url");
+			if (original?.startsWith("https://")) return original;
+		}
+		if (url.hostname === "pbs.twimg.com" && url.searchParams.get("name") === "large") {
+			url.searchParams.set("name", "orig");
+			return url.toString();
+		}
+	} catch {
+		// Relative image paths should be left as authored.
+	}
+	return src;
 }
 
 function isReportLink(children?: React.ReactNode): boolean {
@@ -111,7 +137,7 @@ function getComponents(variant: "default" | "wiki"): Components {
 		p: ({ children, node: _node, ...props }) => {
 			if (variant === "wiki") {
 				return (
-					<p className="text-base text-muted-foreground leading-relaxed" {...props}>
+					<p className="text-base leading-7 text-muted-foreground" {...props}>
 						{children}
 					</p>
 				);
@@ -141,23 +167,11 @@ function getComponents(variant: "default" | "wiki"): Components {
 				</div>
 			);
 		},
-		a: ({ children, href, node: _node, ...props }) => {
-			if (variant === "wiki" && href && !isExternal(href)) {
-				return (
-					<Link
-						href={href}
-						className="text-link transition-colors duration-300 ease-out hover:text-link/80"
-					>
-						{children}
-					</Link>
-				);
-			}
-			return (
-				<InlineLink href={href} {...props}>
-					{children}
-				</InlineLink>
-			);
-		},
+		a: ({ children, href, node: _node, ...props }) => (
+			<InlineLink href={href} {...props}>
+				{children}
+			</InlineLink>
+		),
 		ul: ({ children, node: _node, ...props }) => (
 			<ul className="list-disc pl-6 text-muted-foreground space-y-1" {...props}>
 				{children}
@@ -169,7 +183,7 @@ function getComponents(variant: "default" | "wiki"): Components {
 			</ol>
 		),
 		li: ({ children, node: _node, ...props }) => (
-			<li className="text-base leading-relaxed" {...props}>
+			<li className="text-base leading-7" {...props}>
 				{children}
 			</li>
 		),
@@ -204,9 +218,9 @@ function getComponents(variant: "default" | "wiki"): Components {
 		img: ({ src, alt, node: _node, ...props }) => (
 			// biome-ignore lint/performance/noImgElement: external URLs from markdown, can't use next/image
 			<img
-				src={src}
+				src={variant === "wiki" ? originalWikiImageSrc(src) : src}
 				alt={alt ?? ""}
-				className="rounded-md max-w-full h-auto my-1"
+				className="my-1 h-auto w-auto max-w-full rounded-md"
 				loading="lazy"
 				{...props}
 			/>

@@ -3,6 +3,7 @@ import { cacheLife, cacheTag } from "next/cache";
 import path from "node:path";
 
 const WIKI_DIR = path.join(process.cwd(), "content", "wiki");
+const HIDDEN_WIKI_SLUGS = new Set(["shaders-and-gpu-programming"]);
 
 export interface WikiEntry {
 	slug: string;
@@ -82,7 +83,7 @@ export async function getWikiCategories(): Promise<WikiCategory[]> {
 			continue;
 		}
 		const entry = line.match(/^- \[\[(.+?)\]\]\s*[-–—]\s*(.+)/);
-		if (entry && current) {
+		if (entry && current && !HIDDEN_WIKI_SLUGS.has(entry[1])) {
 			entries.push({ category: current, slug: entry[1], description: entry[2] });
 		}
 	}
@@ -96,7 +97,7 @@ export async function getWikiCategories(): Promise<WikiCategory[]> {
 		});
 	}
 
-	return categories;
+	return categories.filter((category) => category.entries.length > 0);
 }
 
 export async function getWikiArticleExcerpt(slug: string): Promise<string> {
@@ -104,6 +105,7 @@ export async function getWikiArticleExcerpt(slug: string): Promise<string> {
 	cacheLife("max");
 	cacheTag("wiki");
 
+	if (HIDDEN_WIKI_SLUGS.has(slug)) return "";
 	try {
 		const raw = await fs.readFile(path.join(WIKI_DIR, `${slug}.md`), "utf-8");
 		const { body } = parseFrontmatter(raw);
@@ -128,6 +130,7 @@ export async function getWikiArticle(
 	cacheTag("wiki");
 
 	const safeName = slug.replace(/[^a-z0-9-]/g, "");
+	if (HIDDEN_WIKI_SLUGS.has(safeName)) return null;
 	try {
 		const raw = await fs.readFile(path.join(WIKI_DIR, `${safeName}.md`), "utf-8");
 		const { frontmatter, body } = parseFrontmatter(raw);
@@ -156,16 +159,17 @@ export async function getWikiSlugs(): Promise<string[]> {
 	}
 	return files
 		.filter((f) => f.endsWith(".md") && f !== "INDEX.md")
-		.map((f) => f.replace(/\.md$/, ""));
+		.map((f) => f.replace(/\.md$/, ""))
+		.filter((slug) => !HIDDEN_WIKI_SLUGS.has(slug));
 }
 
-export function processWikiLinks(content: string): string {
+export function processWikiLinks(content: string, availableSlugs: ReadonlySet<string>): string {
 	return content.replace(
 		/\[\[([^|\]]+?)(?:\|([^\]]+))?\]\]/g,
 		(_, slugPart: string, alias?: string) => {
 			const slug = slugPart.trim();
-			const label = alias?.trim() ?? slug;
-			return `[${label}](/lab/wiki/${slug})`;
+			const label = alias?.trim() ?? slug.replaceAll("-", " ");
+			return availableSlugs.has(slug) ? `[${label}](/me/wiki/${slug})` : label;
 		},
 	);
 }

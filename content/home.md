@@ -1,11 +1,7 @@
-# Dhruv Bansal
+Studied computer science at [Arizona State](https://www.asu.edu). I learn best by building small things. Inspired by Andrej Karpathy's [personal wiki](/me/wiki), I keep a running collection of things I've found interesting.
 
-Graduated from [ASU](https://www.asu.edu) and now building at [Blueberry](https://blueberry.ai). We're making AI agents that help consumer brands get to know and talk to the people behind their social audience.
+During my time at univeristy I've spent time learning and researching about many things some of which can be found [here](/me/projects).
 
-Most of what I'm curious about sits around AI agents: how they use context and memory, how they get better, and how to keep them from falling over in production.
+Now building at [Blueberry](https://blueberry.ai). Making agents and marketing channels that help some of the largest consumer brands get to know and talk to the people behind their social audience.
 
-I've also written about [embedding-based feature selection](#project-feature-selection), [multi-agent code generation](#project-multi-agent-code-generation), and [training negotiation agents through self-play](#project-negotiation-agents).
-
-Before Blueberry, I worked on document-processing systems and data discovery at [Chunkr](https://chunkr.ai), built internal tools at [Oats Overnight](https://oatsovernight.com), and automated data workflows at [PrivateBlok](https://kpmg.com/us/en/media/news/privateblok-agentic-ai.html).
-
-I learn best by building small things. I keep a running collection of things I've found interesting—from agent architectures and personal knowledge systems to graphics programming, deep focus, and life design.
+Earlier, I worked on document-processing systems and data discovery at [Chunkr](https://chunkr.ai), built internal tools at [Oats Overnight](https://oatsovernight.com), and automated data workflows at [PrivateBlok](https://kpmg.com/us/en/media/news/privateblok-agentic-ai.html).

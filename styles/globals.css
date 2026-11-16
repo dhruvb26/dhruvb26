@@ -8,11 +8,9 @@
 @theme inline {
 	--color-background: var(--background);
 	--color-foreground: var(--foreground);
-	--font-sans:
-		var(--font-diatype-rounded), -apple-system, "SF Pro", "SF Pro Text", "Helvetica Neue",
-		system-ui, sans-serif;
+	--font-sans: var(--font-inter), system-ui, sans-serif;
 	--font-mono: var(--font-departure-mono), ui-monospace, monospace;
-	--font-heading: var(--font-diatype-rounded), -apple-system, "SF Pro", system-ui, sans-serif;
+	--font-heading: var(--font-inter), system-ui, sans-serif;
 	--color-sidebar-ring: var(--sidebar-ring);
 	--color-sidebar-border: var(--sidebar-border);
 	--color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -208,4 +206,49 @@
 
 .research-document .katex {
 	font-size: 1em;
+}
+
+.sidebar-title-full {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: max-content;
+	white-space: nowrap;
+	visibility: hidden;
+}
+
+.sidebar-title-link[data-overflowing="true"]:is(:hover, :focus-visible) .sidebar-title-preview {
+	visibility: hidden;
+}
+
+.sidebar-title-link[data-overflowing="true"]:is(:hover, :focus-visible) .sidebar-title-full {
+	visibility: visible;
+	animation: sidebar-title-pan var(--title-pan-duration) ease-in-out infinite alternate;
+}
+
+@keyframes sidebar-title-pan {
+	0%,
+	12% {
+		transform: translateX(0);
+	}
+	88%,
+	100% {
+		transform: translateX(calc(-1 * var(--title-pan-distance)));
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.sidebar-title-link[data-overflowing="true"]:is(:hover, :focus-visible) .sidebar-title-viewport {
+		overflow: visible;
+	}
+
+	.sidebar-title-link[data-overflowing="true"]:is(:hover, :focus-visible) .sidebar-title-preview {
+		visibility: visible;
+		white-space: normal;
+	}
+
+	.sidebar-title-link[data-overflowing="true"]:is(:hover, :focus-visible) .sidebar-title-full {
+		visibility: hidden;
+		animation: none;
+	}
 }
