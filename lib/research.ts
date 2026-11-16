@@ -2,23 +2,6 @@ import { Cite } from "@citation-js/core";
 import "@citation-js/plugin-bibtex";
 
 const documents = {
-	"feature-selection": {
-		title: "Embedding-Based Markov Blanket Discovery",
-		description:
-			"A causal feature-selection pipeline combining TabPFN embeddings with a neural Markov blanket predictor.",
-		sourceUrl:
-			"https://raw.githubusercontent.com/dhruvb26/CSE472-blanket-challenge/main/solution/report/REPORT.md",
-		bibliographyUrl:
-			"https://raw.githubusercontent.com/dhruvb26/CSE472-blanket-challenge/main/solution/report/references.bib",
-	},
-	"multi-agent-code-generation": {
-		title: "Advancing Multi-Agent Reinforcement Learning for Collaborative Coding Agents",
-		description:
-			"Two coding agents trained together with shared rewards and multi-agent group relative policy optimization.",
-		sourceUrl: "https://raw.githubusercontent.com/dhruvb26/CSE475-Project/main/report/REPORT.md",
-		bibliographyUrl:
-			"https://raw.githubusercontent.com/dhruvb26/CSE475-Project/main/report/references.bib",
-	},
 	"negotiation-agents": {
 		title: "Improving LLM Bargaining Ability via Self-Play Reinforcement Learning",
 		description:
@@ -28,6 +11,23 @@ const documents = {
 			"https://raw.githubusercontent.com/dhruvb26/CSE485-Capstone/main/report/references.bib",
 		excerpt: true,
 		preprintUrl: "https://openreview.net/attachment?id=NQSQTaZlk4&name=pdf",
+	},
+	"multi-agent-code-generation": {
+		title: "Advancing Multi-Agent Reinforcement Learning for Collaborative Coding Agents",
+		description:
+			"Two coding agents trained together with shared rewards and multi-agent group relative policy optimization.",
+		sourceUrl: "https://raw.githubusercontent.com/dhruvb26/CSE475-Project/main/report/REPORT.md",
+		bibliographyUrl:
+			"https://raw.githubusercontent.com/dhruvb26/CSE475-Project/main/report/references.bib",
+	},
+	"feature-selection": {
+		title: "Embedding-Based Markov Blanket Discovery",
+		description:
+			"A causal feature-selection pipeline combining TabPFN embeddings with a neural Markov blanket predictor.",
+		sourceUrl:
+			"https://raw.githubusercontent.com/dhruvb26/CSE472-blanket-challenge/main/solution/report/REPORT.md",
+		bibliographyUrl:
+			"https://raw.githubusercontent.com/dhruvb26/CSE472-blanket-challenge/main/solution/report/references.bib",
 	},
 } as const;
 
